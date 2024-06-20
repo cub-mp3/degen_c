@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "clean": "rimraf dist",
-    "start": "npm run clean && parcel index.html",
+    "start": "parcel index.html",
     "build": "npm run clean && parcel build index.html",
     "build-css": "sass src/main.scss src/main.css",
     "watch-css": "sass --watch src/main.scss:src/main.css"
