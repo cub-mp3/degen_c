@@ -1,0 +1,18 @@
+# Ignore directories created by package installations
+node_modules/
+
+# Ignore build output directories
+dist/
+.parcel-cache/
+
+# Ignore CSS source maps
+*.css.map
+
+# Ignore all log files
+*.log
+
+# Ignore other unnecessary files
+*.DS_Store  # For MacOS
+
+# Optional: ignore specific files that are personal or configuration-specific
+.env        # If you use environment variables

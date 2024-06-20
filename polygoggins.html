@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Random Polygon</title>
+    <link rel="stylesheet" href="./src/main.css" />
+    <script defer type="module" src="./src/controller.js"></script>
+
+    <style>
+      body {
+        font-family: "Comic Sans MS", "Comic Sans", cursive;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="margin-block" id="colorfulBackground">
+      <h1 id="colorfulText">POLYGOGGINS</h1>
+    </div>
+
+    <div class="goggins-container">
+      <canvas
+        id="polygonCanvas"
+        width="400"
+        height="400"
+        style="border: 1px solid #000000"
+      ></canvas>
+
+      <video id="gogginsVideo" width="640" height="360" controls>
+        <source src="./imgs/goggins.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div class="goggins-click-container margin-block">
+      <div class="space-between">
+        <p class="big-arrow">↑</p>
+        <p class="big-arrow">↑</p>
+      </div>
+      <div class="goggins-click-wrap"><h2>click here</h2></div>
+    </div>
+
+    <div class="empty-space">
+      <p>
+        random geometry generator with occasional interruptions from David
+        Goggins shouting at you
+      </p>
+    </div>
+
+    <!-- slot machine -->
+
+    <!-- <div id="slotMachine">
+      <div class="reel" id="reel1">A</div>
+      <div class="reel" id="reel2">A</div>
+      <div class="reel" id="reel3">A</div>
+    </div>
+    <button id="spinButton">Spin!</button>
+    <p id="result"></p> -->
+  </body>
+</html>
