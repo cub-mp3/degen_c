@@ -89,6 +89,36 @@ const videoAttributes = function () {
     if (!videoElement.ended) {
       videoElement.play();
     }
+
+    function preventFullScreen(event) {
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      } else if (document.webkitFullscreenElement) {
+        // Safari
+        document.webkitExitFullscreen();
+      } else if (document.mozFullScreenElement) {
+        // Mozilla
+        document.mozCancelFullScreen();
+      }
+      event.preventDefault();
+    }
+
+    videoElement.addEventListener("fullscreenchange", preventFullScreen, false);
+    videoElement.addEventListener(
+      "webkitfullscreenchange",
+      preventFullScreen,
+      false
+    );
+    videoElement.addEventListener(
+      "mozfullscreenchange",
+      preventFullScreen,
+      false
+    );
+    videoElement.addEventListener(
+      "msfullscreenchange",
+      preventFullScreen,
+      false
+    );
   });
 
   // Remove all default controls from the video

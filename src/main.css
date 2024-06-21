@@ -10,22 +10,12 @@
 
 /* Base styles */
 :root {
-  --header-font-size: 4rem; /* Header Font Size */
-  --subheader-font-size: 3rem; /* Subheader Font Size */
-  --body-font-size: 2rem; /* Body Font Size */
-  --small-font-size: 1rem; /* Small Font Size */
+  --header-font-size: 3rem;
+  --subheader-font-size: 1.25rem;
+  --body-font-size: 1rem;
+  --small-font-size: 0.5rem;
 }
 
-/* Medium screens (tablets, 600px and up) */
-@media (min-width: 600px) {
-  :root {
-    --header-font-size: 3.5rem;
-    --subheader-font-size: 2.75rem;
-    --body-font-size: 1.75rem;
-    --small-font-size: 0.875rem;
-  }
-}
-/* Large screens (desktops, 768px and up) */
 @media (min-width: 768px) {
   :root {
     --header-font-size: 5rem;
@@ -34,23 +24,6 @@
     --small-font-size: 0.75rem;
   }
 }
-/* Extra large screens (large desktops, 1024px and up) */
-@media (min-width: 1024px) {
-  :root {
-    --header-font-size: 2.5rem;
-    --subheader-font-size: 2rem;
-    --body-font-size: 1.25rem;
-    --small-font-size: 0.625rem;
-  }
-}
-/* Spacing Variables */
-:root {
-  --spacing-small: 0.5rem; /* 8px */
-  --spacing-medium: 1rem; /* 16px */
-  --spacing-large: 1.25rem; /* 20px */
-  --spacing-xlarge: 1.6rem; /* 25.6px */
-}
-
 /* Reset Styles */
 * {
   margin: 0;
@@ -64,7 +37,6 @@ html {
 
 body {
   font-family: Arial, sans-serif;
-  font-size: var(--body-font-size);
   background-color: var(--background-color);
   color: var(--text-color);
   display: flex;
@@ -82,6 +54,12 @@ h2 {
 
 p {
   font-size: var(--body-font-size);
+}
+
+.press-start-2p-regular {
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .small-text {
