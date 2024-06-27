@@ -24,6 +24,13 @@
     --small-font-size: 0.75rem;
   }
 }
+:root {
+  --spacing-xlarge: 4em; /* Extra large spacing */
+  --spacing-large: 2em; /* Large spacing */
+  --spacing-medium: 1.5em; /* Medium spacing */
+  --spacing-small: 1em; /* Small spacing */
+}
+
 /* Reset Styles */
 * {
   margin: 0;
@@ -114,7 +121,7 @@ section {
 
 /* Basic Layout and Container Styles */
 .container {
-  padding: var(--spacing-small); /* 20px */
+  padding: var(--spacing-large); /* 20px */
   width: 100%;
   border: 2px solid var(--border-color);
   display: flex;
@@ -232,6 +239,112 @@ header .header__nav-links a {
   50% {
     transform: translateY(-20px); /* Move up by 20px */
   }
+}
+.facebook {
+  --facebook-blue: rgb(31, 113, 228);
+  --facebook-red: rgb(228, 31, 31);
+  --facebook-new: black;
+}
+
+.facebook .header-container {
+  margin-top: var(--spacing-large);
+  flex-direction: row;
+  justify-content: space-between;
+}
+.facebook .header-container h1 {
+  font-size: var(--header-font-size);
+  color: var(--facebook-blue);
+}
+@media (max-width: 600px) {
+  .facebook .header-container h1 {
+    font-size: 2rem;
+  }
+}
+.facebook .container {
+  margin-bottom: var(--spacing-large);
+}
+.facebook .no {
+  flex-direction: row;
+}
+
+.small-img {
+  width: 5em;
+  height: 5em;
+}
+
+@keyframes wobble {
+  0%, 100% {
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%);
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+  }
+  15% {
+    -webkit-transform: translateX(-3px) rotate(-4deg);
+    transform: translateX(-3px) rotate(-4deg);
+  }
+  30% {
+    -webkit-transform: translateX(1.5px) rotate(4deg);
+    transform: translateX(1.5px) rotate(4deg);
+  }
+  45% {
+    -webkit-transform: translateX(-1.5px) rotate(-2.2222222222deg);
+    transform: translateX(-1.5px) rotate(-2.2222222222deg);
+  }
+  60% {
+    -webkit-transform: translateX(0.9090909091px) rotate(1.3333333333deg);
+    transform: translateX(0.9090909091px) rotate(1.3333333333deg);
+  }
+  75% {
+    -webkit-transform: translateX(-0.5454545455px) rotate(-0.8deg);
+    transform: translateX(-0.5454545455px) rotate(-0.8deg);
+  }
+}
+.wobble {
+  width: 100px;
+  height: 100px;
+  animation: wobble 1s infinite;
+}
+
+.box {
+  animation: boogie-box 2s ease infinite;
+}
+
+@keyframes boogie-box {
+  0% {
+    background: var(--facebook-red);
+    transform: translate(1rem, -1rem);
+  }
+  12.5% {
+    transform: translate(-1rem, 1rem);
+  }
+  25% {
+    transform: translate(1rem, -1rem);
+  }
+  37.5% {
+    transform: translate(1rem, 1rem);
+  }
+  50% {
+    background: var(--facebook-blue);
+    transform: translate(-1rem, -1rem);
+  }
+  62.5% {
+    transform: translate(1rem, 1rem);
+  }
+  75% {
+    transform: translate(-1rem, -1rem);
+  }
+  87.5% {
+    transform: translate(-1rem, 1rem);
+  }
+  100% {
+    background: var(--facebook-red);
+    transform: translate(1rem, -1rem);
+  }
+}
+.invisible {
+  display: none;
+  justify-content: space-between;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "clean": "rimraf dist",
-    "start": "npm run clean && parcel index.html",
+    "start": "npm-run-all --parallel watch-css serve",
+    "serve": "parcel index.html",
     "build": "parcel build index.html",
     "build-css": "sass src/main.scss src/main.css",
     "watch-css": "sass --watch src/main.scss:src/main.css"
@@ -11,14 +12,18 @@
   "author": "degen_c",
   "license": "ISC",
   "dependencies": {
+    "bad-words": "^3.0.4",
     "lodash-es": "^4.17.21",
     "scss": "^0.2.4"
   },
   "devDependencies": {
     "@parcel/transformer-raw": "^2.12.0",
     "parcel": "^2.12.0",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
     "rimraf": "^5.0.7",
-    "sass": "^1.77.2"
+    "sass": "^1.77.2",
+    "url": "^0.11.3"
   },
   "description": "",
   "parcel": {
