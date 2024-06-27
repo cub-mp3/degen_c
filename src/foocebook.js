@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
         setTimeout(function () {
           invisible.style.display = "none";
         }, 3000); // 3000 milliseconds = 3 seconds
-
+      } else {
         addItem(userName.value, inputText);
         userInput.value = "";
         userName.value = "";
