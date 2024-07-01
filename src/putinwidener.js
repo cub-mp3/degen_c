@@ -11,35 +11,20 @@ document.addEventListener("DOMContentLoaded", (event) => {
     if (event.code === "Space") {
       event.preventDefault(); // Prevent the default action of the spacebar (scrolling)
       increaseWidth();
+      playAudioooo();
     }
   });
-  document.addEventListener("click", (event) => {
+  imgContainer.addEventListener("click", (event) => {
     event.preventDefault(); // Prevent the default action of the spacebar (scrolling)
     increaseWidth();
+    playAudioooo();
   });
 });
-
-// // JavaScript to control the audio playback
-// const audio = document.getElementById("wide-walk-song");
-
-// function playAudio() {
-//   audio.play();
-// }
-
-// function pauseAudio() {
-//   audio.pause();
-// }
-
-// function stopAudio() {
-//   audio.pause();
-//   audio.currentTime = 0; // Reset the audio to the beginning
-// }
 
 document.addEventListener("DOMContentLoaded", () => {
   const audio = document.getElementById("wide-walk-song");
 
   // Play audio when the page loads
-  audio.play();
 
   // Functions to control the audio playback
   window.playAudioooo = function () {
