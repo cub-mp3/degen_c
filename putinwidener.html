@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>putin widener</title>
+    <link rel="icon" type="image/png" href="imgs/c.png" />
+    <link rel="stylesheet" href="./src/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <script defer type="module" src="./src/putinwidener.js"></script>
+  </head>
+
+  <body>
+    <section class="wide-putin-section">
+      <div class="header-container">
+        <h2>putin <span>widener</span></h2>
+      </div>
+      <div class="widener">
+        <div class="wide-container container">
+          <div class="wide-img-container container"></div>
+        </div>
+      </div>
+      <p>press space yeah or click yh</p>
+
+      <!-- Audio element -->
+      <audio id="wide-walk-song" src="/audio/wide-walk.mp3"></audio>
+
+      <div class="buttons-container row-flex">
+        <button onclick="playAudioooo()">▶️</button>
+        <button onclick="pauseAudio()">⏸️</button>
+        <button onclick="stopAudio()">⏹️</button>
+      </div>
+
+      <div class="empty-space"></div>
+    </section>
+  </body>
+</html>

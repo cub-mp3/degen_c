@@ -6,12 +6,13 @@
   --background-color: #f0f0f0; /* Light Grey Background */
   --text-color: #333; /* Dark Text */
   --border-color: #000000; /* Light Grey Border */
+  --pink: rgb(255, 91, 220);
 }
 
 /* Base styles */
 :root {
   --header-font-size: 3rem;
-  --subheader-font-size: 1.25rem;
+  --subheader-font-size: 2rem;
   --body-font-size: 1rem;
   --small-font-size: 0.5rem;
 }
@@ -19,7 +20,7 @@
 @media (min-width: 768px) {
   :root {
     --header-font-size: 5rem;
-    --subheader-font-size: 2.5rem;
+    --subheader-font-size: 5rem;
     --body-font-size: 1.5rem;
     --small-font-size: 0.75rem;
   }
@@ -74,10 +75,10 @@ p {
 }
 
 /* Example Button Styles */
-.button {
+button {
   padding: var(--spacing-small) var(--spacing-xlarge); /* 8px 25.6px */
   font-size: 1.25rem; /* 20px */
-  background-color: var(--primary-color);
+  background-color: var(--pink);
   color: #fff;
   border: none;
   border-radius: 0.25rem;
@@ -104,9 +105,15 @@ footer,
 header,
 section {
   width: 100%;
-  padding-bottom: var(--spacing-medium);
-  padding-left: var(--spacing-medium);
-  padding-right: var(--spacing-medium);
+}
+@media (min-width: 768px) {
+  footer,
+  header,
+  section {
+    padding-bottom: var(--spacing-medium);
+    padding-left: var(--spacing-medium);
+    padding-right: var(--spacing-medium);
+  }
 }
 
 .header {
@@ -121,12 +128,23 @@ section {
 
 /* Basic Layout and Container Styles */
 .container {
-  padding: var(--spacing-large); /* 20px */
+  padding: 0;
   width: 100%;
   border: 2px solid var(--border-color);
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+@media (min-width: 768px) {
+  .container {
+    padding: var(--spacing-large); /* 20px */
+  }
+}
+
+.row-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Utility Classes */
@@ -240,7 +258,7 @@ header .header__nav-links a {
     transform: translateY(-20px); /* Move up by 20px */
   }
 }
-.facebook {
+:root {
   --facebook-blue: rgb(31, 113, 228);
   --facebook-red: rgb(228, 31, 31);
   --facebook-new: black;
@@ -252,13 +270,7 @@ header .header__nav-links a {
   justify-content: space-between;
 }
 .facebook .header-container h1 {
-  font-size: var(--header-font-size);
   color: var(--facebook-blue);
-}
-@media (max-width: 600px) {
-  .facebook .header-container h1 {
-    font-size: 2rem;
-  }
 }
 .facebook .container {
   margin-bottom: var(--spacing-large);
@@ -345,6 +357,67 @@ header .header__nav-links a {
 .invisible {
   display: none;
   justify-content: space-between;
+}
+
+.wide-putin-section {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.wide-putin-section .header-container {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-block: var(--spacing-small);
+}
+.wide-putin-section .header-container h2 {
+  width: 100%;
+  border: 1px solid black;
+  padding: var(--small-font-size);
+  box-sizing: border-box;
+  display: inline-block;
+}
+.wide-putin-section .header-container h2 span {
+  box-sizing: border-box;
+  display: inline-block; /* Required for transform to work properly on text */
+  font-size: var(--body-font-size);
+  transform: scaleX(4); /* Adjust the value as needed */
+  margin-left: 6em;
+  color: rgb(0, 0, 0);
+  background-color: var(--pink);
+}
+.wide-putin-section .container {
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+.wide-putin-section .wide-container {
+  width: fit-content;
+  height: fit-content;
+  height: 60vh;
+  width: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.wide-putin-section .wide-img-container {
+  background-image: url(/imgs/wide.png);
+  height: 60vh;
+  width: 60vh;
+  background-size: 100% 100%;
+  background-position: center;
+}
+.wide-putin-section p {
+  margin-top: var(--spacing-small);
+}
+.wide-putin-section button {
+  font-size: var(--subheader-font-size);
+  margin-inline: var(--spacing-small);
+  padding: 0;
+  background-color: transparent;
 }
 
 /*# sourceMappingURL=main.css.map */
