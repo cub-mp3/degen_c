@@ -86,13 +86,15 @@ button {
   display: inline-block;
   text-align: center;
   text-decoration: none;
+  transition: all 0.5s ease;
 }
 
-.button:hover {
+button:hover {
   background-color: var(--secondary-color);
+  transform: translateY(-2px);
 }
 
-ul {
+button ul {
   list-style-type: none;
 }
 
@@ -402,10 +404,11 @@ header .header__nav-links a {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 .wide-putin-section .wide-img-container {
   background-image: url(/imgs/wide.png);
-  height: 60vh;
+  height: 100%;
   width: 60vh;
   background-size: 100% 100%;
   background-position: center;
@@ -413,11 +416,17 @@ header .header__nav-links a {
 .wide-putin-section p {
   margin-top: var(--spacing-small);
 }
-.wide-putin-section button {
-  font-size: var(--subheader-font-size);
+.wide-putin-section .buttons-container button {
+  font-size: var(--body-font-size);
   margin-inline: var(--spacing-small);
+  margin-bottom: var(--spacing-small);
   padding: 0;
   background-color: transparent;
+}
+@media (max-width: 768px) {
+  .wide-putin-section .buttons-container button {
+    font-size: var(--subheader-font-size);
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

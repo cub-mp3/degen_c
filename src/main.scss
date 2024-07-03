@@ -89,13 +89,15 @@ button {
   display: inline-block;
   text-align: center;
   text-decoration: none;
+  transition: all 0.5s ease;
 }
 
-.button:hover {
+button:hover {
   background-color: var(--secondary-color);
+  transform: translateY(-2px);
 }
 
-ul {
+button ul {
   list-style-type: none;
 }
 ul li a {
@@ -447,7 +449,7 @@ header {
   .wide-img-container {
     // background-color: red;
     background-image: url(/imgs/wide.png);
-    height: 60vh;
+    height: 100%;
     width: 60vh;
     background-size: 100% 100%;
     background-position: center;
@@ -455,9 +457,13 @@ header {
   p {
     margin-top: var(--spacing-small);
   }
-  button {
-    font-size: var(--subheader-font-size);
+  .buttons-container button {
+    font-size: var(--body-font-size);
+    @media (max-width: 768px) {
+      font-size: var(--subheader-font-size);
+    }
     margin-inline: var(--spacing-small);
+    margin-bottom: var(--spacing-small);
     padding: 0;
     background-color: transparent;
   }
