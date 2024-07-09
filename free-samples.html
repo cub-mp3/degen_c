@@ -3,11 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
     <title>free samples</title>
     <link rel="icon" type="image/png" href="imgs/c.png" />
     <link rel="stylesheet" href="./src/main.css" />
-
+    <script defer type="module" src="./src/free-samples.js"></script>
     <style>
       .sushi-container {
         height: 100vw;
@@ -55,7 +54,6 @@
   </head>
   <body>
     <h1>free samples</h1>
-
     <div class="container sushi-container">
       <div class="plate" id="plate"></div>
     </div>
@@ -66,73 +64,5 @@
       >
       <input type="range" id="sushiCountSlider" min="1" max="20" value="5" />
     </div>
-
-    <script>
-      const plate = document.getElementById("plate");
-      const controls = document.getElementById("controls");
-      const respawnButton = document.getElementById("respawnButton");
-      const sushiCountSlider = document.getElementById("sushiCountSlider");
-      const sushiCountDisplay = document.getElementById("sushiCountDisplay");
-
-      let sushiCount = parseInt(sushiCountSlider.value, 10); // Initial number of sushi pieces
-
-      sushiCountSlider.addEventListener("input", function () {
-        sushiCount = parseInt(this.value, 10);
-        sushiCountDisplay.textContent = sushiCount;
-      });
-
-      function getRandomPosition() {
-        const x = Math.random() * 60; // Random position between 0% and 60% (within plate)
-        const y = Math.random() * 60; // Random position between 0% and 60% (within plate)
-        return { x, y };
-      }
-
-      function getRandomColor() {
-        const letters = "0123456789ABCDEF";
-        let color = "#";
-        for (let i = 0; i < 6; i++) {
-          color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
-      }
-
-      function addSushi() {
-        for (let i = 0; i < sushiCount; i++) {
-          const sushi = document.createElement("img");
-          sushi.src = "imgs/sushi.png";
-          sushi.alt = "Sushi";
-          sushi.className = "sushi";
-          const { x, y } = getRandomPosition();
-          sushi.style.left = `${x + 10}%`;
-          sushi.style.top = `${y + 10}%`;
-          sushi.addEventListener("click", function () {
-            sushi.remove();
-            checkPlateEmpty();
-          });
-          plate.appendChild(sushi);
-        }
-        checkPlateEmpty();
-      }
-
-      function respawnSushi() {
-        plate.innerHTML = ""; // Clear the plate
-        plate.style.backgroundColor = getRandomColor(); // Change the plate color
-        addSushi(); // Add sushi pieces
-      }
-
-      function checkPlateEmpty() {
-        const sushiElements = plate.querySelectorAll(".sushi");
-        if (sushiElements.length === 0) {
-          controls.style.display = "flex";
-        } else {
-          controls.style.display = "none";
-        }
-      }
-
-      respawnButton.addEventListener("click", respawnSushi);
-
-      // Add initial sushi pieces when the page loads
-      addSushi();
-    </script>
   </body>
 </html>
