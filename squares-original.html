@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Incrementing Squares in a Grid</title>
+    <style>
+      .container {
+        width: 80vw;
+        height: 80vw;
+        max-width: 600px;
+        max-height: 600px;
+        display: grid;
+        gap: 2px; /* Adjust the gap between squares */
+        margin: 20px auto;
+        border: 2px solid black;
+        box-sizing: border-box;
+      }
+      .square {
+        background-color: lightblue;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        box-sizing: border-box;
+      }
+      .square-number-container {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container" id="container"></div>
+    <div class="square-number-container" id="square-number-container"></div>
+
+    <script>
+      let count = 1;
+
+      document.addEventListener("DOMContentLoaded", () => {
+        addSquares(count); // Start with 1 square
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.code === "Space") {
+          count++;
+          addSquares(count * count);
+        }
+      });
+
+      function addSquares(number) {
+        const container = document.getElementById("container");
+        const squareNumberContainer = document.getElementById(
+          "square-number-container"
+        );
+
+        container.innerHTML = ""; // Clear previous squares
+
+        const sideLength = Math.ceil(Math.sqrt(number)); // Calculate the side length of the square grid
+        container.style.gridTemplateColumns = `repeat(${sideLength}, 1fr)`;
+        container.style.gridTemplateRows = `repeat(${sideLength}, 1fr)`;
+
+        const squareSize = container.clientWidth / sideLength;
+        const fontSize = squareSize * 0.4;
+
+        for (let i = 0; i < number; i++) {
+          const square = document.createElement("div");
+          square.classList.add("square");
+          square.textContent = Math.ceilaa(Math.random() * 3); // Display the count on each square
+          container.appendChild(square);
+          square.style.fontSize = `${fontSize}px`;
+        }
+
+        // Update the square number container
+        squareNumberContainer.textContent = `Number of squares: ${number}`;
+      }
+    </script>
+  </body>
+</html>

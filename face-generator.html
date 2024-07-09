@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Random Polygon</title>
+    <link rel="icon" type="image/png" href="imgs/c.png" />
+    <link rel="stylesheet" href="./src/main.css" />
+    <!-- <script defer type="module" src="./src/script.js"></script> -->
+  </head>
+  <body>
+    <div class="svg-box">
+      <svg
+        viewBox="0 0 500 500"
+        preserveAspectRatio="xMidYMid meet"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0)"
+          d="M 123.448 219.065 C 123.448 219.065 85.543 249.799 87.592 267.215 C 89.641 284.631 147.011 400.395 143.937 412.689 C 140.863 424.983 134.717 455.716 138.815 465.961 C 142.913 476.206 215.65 485.426 227.943 482.352 C 240.236 479.278 346.781 373.759 351.904 355.319 C 357.027 336.879 352.929 211.893 352.929 211.893 C 352.929 211.893 350.879 87.933 323.218 70.517 C 295.557 53.101 210.528 30.99 172.622 64.797 C 134.716 98.604 135.742 151.877 135.742 151.877 C 135.742 151.877 144.962 206.174 123.448 219.065 Z"
+          transform="matrix(0.9999999999999999, 0, 0, 0.9999999999999999, 0, 0)"
+        />
+
+        <path
+          style="
+            fill: rgb(216, 216, 216);
+            stroke: rgb(255, 0, 0);
+            paint-order: fill;
+          "
+          d="M 169.549 119.663 L 97.836 148.348 L 145.986 94.052 L 103.983 119.663 L 156.231 60.244 L 120.375 48.975 C 120.375 48.975 206.43 41.804 207.454 41.804 C 208.478 41.804 273.02 17.217 274.044 17.217 C 275.068 17.217 284.289 50 284.289 50 L 404.151 45.902 L 350.879 89.954 L 408.249 146.299 C 408.249 146.299 322.194 140.152 321.17 140.152 C 320.146 140.152 315.023 195.474 315.023 196.498 C 315.023 197.522 218.723 104.296 218.723 104.296 C 218.723 104.296 218.723 177.033 214.625 174.984 C 210.527 172.935 173.647 123.761 169.549 119.663 Z"
+          transform="matrix(0.9999999999999999, 0, 0, 0.9999999999999999, 0, 0)"
+        />
+
+        <!-- left eye  -->
+        <rect x="110" y="160" width="80" height="80" fill="lightpink" />
+        <circle
+          cx="150"
+          cy="200"
+          r="35"
+          stroke="black"
+          stroke-width="1"
+          fill="red"
+        />
+        <circle
+          cx="150"
+          cy="200"
+          r="10"
+          stroke="black"
+          stroke-width="1"
+          fill="blue"
+        />
+        <!-- right eye -->
+        <rect x="210" y="160" width="100" height="100" fill="lightpink" />
+        <circle
+          cx="260"
+          cy="210"
+          r="45"
+          stroke="black"
+          stroke-width="1"
+          fill="red"
+        />
+        <circle
+          cx="260"
+          cy="210"
+          r="10"
+          stroke="black"
+          stroke-width="1"
+          fill="blue"
+        />
+
+        <!-- hair -->
+
+        <path
+          style="
+            fill: rgb(32, 40, 100);
+            stroke: rgb(0, 0, 0);
+            paint-order: fill;
+          "
+          d="M 169.549 119.663 L 97.836 148.348 L 145.986 94.052 L 103.983 119.663 L 156.231 60.244 L 120.375 48.975 C 120.375 48.975 206.43 41.804 207.454 41.804 C 208.478 41.804 273.02 17.217 274.044 17.217 C 275.068 17.217 284.289 50 284.289 50 L 404.151 45.902 L 350.879 89.954 L 408.249 146.299 C 408.249 146.299 322.194 140.152 321.17 140.152 C 320.146 140.152 315.023 195.474 315.023 196.498 C 315.023 197.522 218.723 104.296 218.723 104.296 C 218.723 104.296 218.723 177.033 214.625 174.984 C 210.527 172.935 173.647 123.761 169.549 119.663 Z"
+          transform="matrix(0.9999999999999999, 0, 0, 0.9999999999999999, 0, 0)"
+        />
+        <!-- mouth -->
+        <!-- Circle -->
+        <circle id="svg1" cx="200" cy="360" r="60" stroke="black"
+        stroke-width=1" fill="red" display="none" />
+        <!-- Rectangle -->
+        <rect
+          id="svg2"
+          x="150"
+          y="310"
+          width="100"
+          height="100"
+          stroke="black"
+          stroke-width="1"
+          fill="blue"
+          display="none"
+        />
+        <!-- Triangle -->
+        <polygon
+          id="svg3"
+          points="125,291.67 187.5,416.67 62.5,416.67"
+          stroke="black"
+          stroke-width="1"
+          fill="green"
+          transform="translate(70, -10) rotate(70, 125, 375)"
+          display="none"
+        />
+      </svg>
+    </div>
+     
+      </svg>
+    </div>
+
+    <script>
+      function getRandomColor() {
+        const letters = "0123456789ABCDEF";
+        let color = "#";
+        for (let i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
+
+      const showRandomColor = function () {
+        const svgElements = document.querySelectorAll(".svg-box svg *");
+
+        svgElements.forEach((element) => {
+          if (element.tagName === "path") {
+            element.style.fill = getRandomColor();
+          } else {
+            element.setAttribute("fill", getRandomColor());
+          }
+          showRandomSVG();
+        });
+      };
+
+      document.addEventListener("keydown", (event) => {
+  if (event.key === 'a' || event.key === 'A') {
+    showRandomColor();
+  }
+});
+
+
+      //random svg
+      function showRandomSVG() {
+        const svgs = ["svg1", "svg2", "svg3"];
+        const randomSVG = svgs[Math.floor(Math.random() * svgs.length)];
+        console.log(randomSVG);
+        svgs.forEach((id) => {
+          document.getElementById(id).style.display =
+            id === randomSVG ? "block" : "none";
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // Your code here
+        showRandomSVG();
+        showRandomColor();
+      });
+
+      
+
+    for (let i = 0; i < 10; i++) { // Change this number to create more or fewer SVGs
+      container.appendChild(createSVG());
+    }
+    </script>
+  </body>
+</html>

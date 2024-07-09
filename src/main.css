@@ -429,4 +429,27 @@ header .header__nav-links a {
   }
 }
 
+.svg-box {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border: 1px solid black;
+  margin-top: var(--spacing-medium);
+  box-sizing: border-box;
+}
+
+.svg-box svg {
+  width: 100%;
+  height: auto;
+  display: block; /* Ensures no extra space is added */
+}
+
+.record-container {
+  width: 100%;
+  max-width: 500px;
+  height: 200px;
+  border: 1px solid black;
+  margin-top: var(--spacing-medium);
+}
+
 /*# sourceMappingURL=main.css.map */

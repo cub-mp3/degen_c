@@ -13,11 +13,13 @@
   "license": "ISC",
   "dependencies": {
     "bad-words": "^3.0.4",
+    "firebase": "^10.12.2",
     "lodash-es": "^4.17.21",
     "scss": "^0.2.4"
   },
   "devDependencies": {
     "@parcel/transformer-raw": "^2.12.0",
+    "buffer": "^6.0.3",
     "parcel": "^2.12.0",
     "path-browserify": "^1.0.1",
     "process": "^0.11.10",
