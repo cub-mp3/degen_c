@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="./src/main.css" />
     <script defer type="module" src="./src/free-samples.js"></script>
     <style>
+      body {
+        cursor: default;
+      }
       .sushi-container {
         height: 100vw;
         width: 100vw;
@@ -17,6 +20,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        cursor: pointer;
       }
       @media (max-width: 768px) {
         .sushi-container {
@@ -34,12 +38,14 @@
         align-items: center;
         border: 2px solid #ddd;
         margin-bottom: 20px;
+        cursor: pointer;
       }
       .sushi {
         width: 20%;
         height: 20%;
         position: absolute;
         cursor: pointer;
+        user-select: none; /* Prevent text selection */
       }
       .controls {
         display: none;

@@ -1,0 +1,7 @@
+project-root/
+├── dist/
+├── src/
+│   ├── js/
+│   ├── css/
+├── imgs/
+└── index.html

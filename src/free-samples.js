@@ -1,4 +1,4 @@
-import sushiImage from "/imgs/sushi.png";
+import sushiImg from "/imgs/sushi.png"; // Ensure this path is correct
 
 document.addEventListener("DOMContentLoaded", () => {
   const plate = document.getElementById("plate");
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function addSushi() {
     for (let i = 0; i < sushiCount; i++) {
       const sushi = document.createElement("img");
-      sushi.src = sushiImage;
+      sushi.src = sushiImg; // Ensure this path is correct
       sushi.alt = "Sushi";
       sushi.className = "sushi";
       const { x, y } = getRandomPosition();
