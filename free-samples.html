@@ -11,6 +11,9 @@
       body {
         cursor: default;
       }
+      h1 {
+        user-select: none;
+      }
       .sushi-container {
         height: 100vw;
         width: 100vw;
@@ -25,6 +28,7 @@
       @media (max-width: 768px) {
         .sushi-container {
           border: none;
+          user-select: auto;
         }
       }
       .plate {
@@ -39,13 +43,14 @@
         border: 2px solid #ddd;
         margin-bottom: 20px;
         cursor: pointer;
+        user-select: none;
       }
       .sushi {
         width: 20%;
         height: 20%;
         position: absolute;
         cursor: pointer;
-        user-select: none; /* Prevent text selection */
+        user-select: all;
       }
       .controls {
         display: none;

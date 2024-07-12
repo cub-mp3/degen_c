@@ -16,14 +16,18 @@ const showRandomColor = function () {
     } else {
       element.setAttribute("fill", getRandomColor());
     }
-    showRandomSVG();
   });
 };
 
 document.addEventListener("keydown", (event) => {
-  if (event.key === "a" || event.key === "A") {
+  if (event.code === "Space" || event.key === " ") {
     showRandomColor();
+    showRandomSVG();
   }
+});
+document.addEventListener("click", function () {
+  showRandomColor();
+  showRandomSVG();
 });
 
 //random svg
@@ -42,8 +46,3 @@ document.addEventListener("DOMContentLoaded", function () {
   showRandomSVG();
   showRandomColor();
 });
-
-for (let i = 0; i < 10; i++) {
-  // Change this number to create more or fewer SVGs
-  container.appendChild(createSVG());
-}

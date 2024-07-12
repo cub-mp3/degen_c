@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     for (let i = 0; i < sushiCount; i++) {
       const sushi = document.createElement("img");
       sushi.src = sushiImg; // Ensure this path is correct
+      // sushi.src = "/imgs/sushi.png";
       sushi.alt = "Sushi";
       sushi.className = "sushi";
       const { x, y } = getRandomPosition();
