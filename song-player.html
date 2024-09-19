@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Song Player</title>
+    <link rel="stylesheet" href="src/song-player.css" />
+  </head>
+  <body>
+    <div class="audio-section">
+      <div class="audio-controls-container">
+        <div class="fx-container margin-small">
+          <label for="panner-control">pan</label>
+          <input
+            type="range"
+            id="panner-control"
+            min="-1"
+            max="1"
+            value="0"
+            step="0.01"
+          />
+          <label for="delay-control">delay</label>
+
+          <input
+            type="range"
+            id="delay-control"
+            min="0"
+            max="0.7"
+            value="0"
+            step="0.01"
+          />
+          <!-- <input
+            type="range"
+            id="reverb-control"
+            min="0"
+            max="1"
+            value="0"
+            step="0.01"
+          /> -->
+        </div>
+        <div class="main-controls-container margin-block-small">
+          <div class="album-cover"></div>
+          <div class="main-controls">
+            <audio id="audioElement" controls></audio>
+            <div class="skip-prev-buttons">
+              <button class="skip-button button">&#9664;</button>
+              <button class="prev-button button">&#9654;</button>
+            </div>
+          </div>
+        </div>
+        <div class="filter-container margin-small">
+          <p>high pass</p>
+          <input
+            type="range"
+            id="filter"
+            min="-100"
+            max="100"
+            value="0"
+            step="1"
+          />
+          <p>low pass</p>
+        </div>
+      </div>
+      <div class="song-info-container">
+        <h2 id="song-name">select a song</h2>
+        <p id="song-tempo"></p>
+        <p id="song-key"></p>
+        <p id="song-release"></p>
+        <a
+          id="song-download"
+          class="button"
+          href="songs-for-website/songs/time-2.wav"
+          download
+          >Download</a
+        >
+      </div>
+    </div>
+
+    <div class="slider-section">
+      <div class="slider">
+        <div
+          class="slide song-item"
+          id="time-2"
+          data-cover="songs-for-website/covers/time-2.png"
+          data-src="songs-for-website/songs/time-2.wav"
+          data-name="time 2"
+          data-tempo="128 BPM"
+          data-key="E Minor"
+          data-release=" 09.09.24"
+        ></div>
+
+        <div
+          class="slide song-item"
+          data-cover="songs-for-website/covers/another-npc.png"
+          data-src="songs-for-website/songs/another-npc.wav"
+          data-name="when another npc tells u not to put ur student loan into shitcoin"
+          data-tempo="128 BPM"
+          data-key="E Minor"
+          data-release=" 09.09.24"
+          id="another-npc"
+        ></div>
+        <div
+          class="slide song-item"
+          data-cover="songs-for-website/covers/soup.png"
+          data-src="songs-for-website/songs/soup.wav"
+          data-name="soup (with sula)"
+          data-tempo="128 BPM"
+          data-key="E Minor"
+          data-release=" 09.09.24"
+          id="soup"
+        ></div>
+        <div
+          class="slide song-item"
+          data-cover="songs-for-website/covers/the-wheel-of-fortune.png"
+          data-src="songs-for-website/songs/the-wheel-of-fortune-1.wav"
+          data-name="the wheel of fortune i"
+          data-tempo="128 BPM"
+          data-key="E Minor"
+          data-release=" 09.09.24"
+          id="the-wheel-of-fortune-1"
+        ></div>
+        <div
+          class="slide song-item"
+          data-cover="songs-for-website/covers/the-wheel-of-fortune.png"
+          data-src="songs-for-website/songs/the-wheel-of-fortune-2.wav"
+          data-name="the wheel of fortune ii"
+          data-tempo="128 BPM"
+          data-key="E Minor"
+          data-release=" 09.09.24"
+          id="the-wheel-of-fortune-2"
+        ></div>
+        <div
+          class="slide song-item"
+          data-cover="songs-for-website/covers/head-in-the-clouds.png"
+          data-src="songs-for-website/songs/head-in-the-clouds.wav"
+          data-name="head in the clouds"
+          data-tempo="128 BPM"
+          data-key="E Minor"
+          data-release=" 09.09.24"
+          id="head-in-the-clouds"
+        ></div>
+
+        <button class="slider__btn slider__btn--left">&larr;</button>
+        <button class="slider__btn slider__btn--right">&rarr;</button>
+        <div class="dots"></div>
+      </div>
+    </div>
+
+    <script src="./src/song-player.js"></script>
+  </body>
+</html>
