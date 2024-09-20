@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SVG Manipulation</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap");
+
+      body {
+        font-family: "Press Start 2P", system-ui;
+        text-transform: uppercase;
+        height: 200vh;
+        border: 1px solid red;
+        margin: 0;
+        font-size: 10px;
+        font-weight: 100;
+      }
+      .face-section {
+        display: grid;
+        grid-template-columns: 20% 60% 20%;
+        margin-top: 400px;
+        /* border: 1px solid black; */
+      }
+
+      .button-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        gap: 10px;
+        border: 1px solid black;
+      }
+      button {
+        width: 100px;
+        height: 25px;
+      }
+      .face-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        /* background-color: green; */
+        overflow: hidden;
+        box-sizing: content-box;
+      }
+
+      .cub-npc-container {
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 400px;
+        transform: translateX(-50%);
+        display: flex;
+      }
+
+      #face-svg {
+        width: 400px; /* Set the width of the SVG */
+        height: auto; /* Maintain aspect ratio */
+        border: 1px solid black;
+      }
+
+      .name-container {
+        border: 1px solid black;
+      }
+
+      .scroll-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        position: relative;
+      }
+
+      .scroll-container {
+        margin-left: 320px;
+        width: 80px;
+        height: 400px;
+        /* overflow: hidden; */
+        /* background-color: green; */
+        box-sizing: content-box;
+        position: relative;
+      }
+
+      .scroll-text {
+        /* background-color: green; */
+        position: absolute;
+        width: 100px;
+        height: 200%;
+        bottom: 0;
+        left: -10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+      }
+
+      .line {
+        height: 5%;
+
+        text-align: center;
+        width: fit-content;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="face-section">
+      <div class="button-container">
+        <p>click to change color scheme</p>
+        <button id="button-1">1</button>
+        <button id="button-2">2</button>
+        <button id="button-3">3</button>
+        <button id="button-4">4</button>
+        <button id="stop-button">stop</button>
+      </div>
+      <div class="face-container">
+        <div class="cub-npc-container">
+          <div class="scroll-section">
+            <div class="scroll-container">
+              <div class="scroll-text">
+                <!-- Duplicated text lines to fill the container -->
+                <div class="line">cub npc</div>
+                <div class="line">cub npc</div>
+
+                <div class="line">cub npc</div>
+                <div class="line">cub npc</div>
+                <div class="line">cub npc</div>
+                <div class="line">cub npc</div>
+                <div class="line">cub npc</div>
+                <div class="line">cub npc</div>
+                <div class="line">cub npc</div>
+                <div class="line">cub npc</div>
+                <div class="line">cub npc</div>
+                <div class="line">cub npc</div>
+                <div class="line">cub npc</div>
+                <div class="line">cub npc</div>
+                <div class="line">cub npc</div>
+                <div class="line">cub npc</div>
+                <div class="line">cub npc</div>
+                <div class="line">cub npc</div>
+                <div class="line">cub npc</div>
+                <div class="line">cub npc</div>
+                <div class="line">cub npc</div>
+                <div class="line">cub npc</div>
+                <div class="line">cub npc</div>
+                <div class="line">cub npc</div>
+                <div class="line">cub npc</div>
+                <div class="line">cub npc</div>
+                <div class="line">cub npc</div>
+                <div class="line">cub npc</div>
+                <div class="line">cub npc</div>
+                <div class="line">cub npc</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Embed the SVG file using the object tag -->
+        <object
+          id="face-svg"
+          type="image/svg+xml"
+          data="./imgs/face7.svg"
+        ></object>
+      </div>
+      <div class="name-container"></div>
+    </section>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const colorpalettes = {
+          colorpalette0: ["d5e1df", "e3eaa7", "b5e7a0", "86af49"],
+          colorpalette1: ["b9936c", "dac292", "e6e2d3", "c4b7a6"],
+
+          colorpalette2: ["b2b2b2", "f4e1d2", "f18973", "bc5a45"],
+
+          colorpalette3: ["bccad6", "8d9db6", "667292", "f1e3dd"],
+        };
+
+        const svgObject = document.getElementById("face-svg");
+
+        let numColors;
+
+        let colorIndex = 0;
+
+        let colorpalette;
+
+        let cycleInterval;
+
+        let isCycling = true;
+
+        function changePalette(input) {
+          selectedColorpalette = `colorpalette${input}`;
+          colorpalette = colorpalettes[selectedColorpalette];
+          numColors = colorpalette.length;
+
+          const scrollContainer = document.querySelector(".scroll-container");
+
+          console.log(colorpalette);
+
+          scrollContainer.style.backgroundColor = `#${colorpalette[0]}`;
+        }
+
+        // Function to access and manipulate SVG inside the object tag
+
+        function setColor() {
+          const svgDoc = svgObject.contentDocument;
+          const face = svgDoc.querySelectorAll(".face");
+          const lips = svgDoc.querySelectorAll(".lip");
+          const dragons = svgDoc.querySelectorAll(".dragon");
+          const eyes = svgDoc.querySelectorAll(".eye-inner");
+          adjustFill(face, colorpalette[colorIndex % numColors]);
+          adjustFill(lips, colorpalette[(colorIndex + 1) % numColors]);
+          adjustFill(dragons, colorpalette[(colorIndex + 2) % numColors]);
+          adjustFill(eyes, colorpalette[(colorIndex + 3) % numColors]);
+        }
+
+        function adjustFill(elements, color) {
+          elements.forEach((element) => {
+            element.style.fill = `#${color}`;
+          });
+        }
+
+        //function to increase the array number every second (and reset it after 3)
+        function cycleColors() {
+          cycleInterval = setInterval(() => {
+            colorIndex = (colorIndex + 1) % colorpalette.length;
+            setColor();
+          }, 938);
+        }
+
+        function stopcycleColors() {
+          clearInterval(cycleInterval);
+          setColor();
+          console.log("stopped");
+          isCycling = false;
+        }
+
+        svgObject.addEventListener("load", function () {
+          changePalette(0);
+
+          cycleColors();
+        });
+
+        const stopButton = document.getElementById("stop-button");
+
+        function toggleCycleColors() {
+          if (isCycling) {
+            stopcycleColors();
+            stopButton.innerHTML = "start";
+          } else {
+            cycleColors();
+            isCycling = true;
+            stopButton.innerHTML = "stop";
+          }
+        }
+
+        document
+          .getElementById("button-1")
+          .addEventListener("click", () => changePalette(0));
+        document
+          .getElementById("button-2")
+          .addEventListener("click", () => changePalette(1));
+        document
+          .getElementById("button-3")
+          .addEventListener("click", () => changePalette(2));
+        document
+          .getElementById("button-4")
+          .addEventListener("click", () => changePalette(3));
+
+        stopButton.addEventListener("click", () => {
+          toggleCycleColors();
+          toggleAnimateScroll();
+        });
+
+        const scrollText = document.querySelector(".scroll-text");
+        const containerHeight =
+          document.querySelector(".scroll-container").offsetHeight;
+
+        let scrollAmount = 0;
+        let scrollAnimationFrameId;
+        let scrollStopped = false;
+
+        function animateScroll() {
+          scrollAmount += 0.5;
+          if (scrollAmount >= containerHeight) scrollAmount = 0;
+          {
+            scrollText.style.transform = `translateY(${scrollAmount}px)`;
+            // console.log(scrollAmount);
+          }
+          scrollAnimationFrameId = requestAnimationFrame(animateScroll);
+          scrollStopped = false;
+        }
+        animateScroll();
+
+        function stopAnimateScroll() {
+          cancelAnimationFrame(scrollAnimationFrameId); // Stop the animation
+          scrollAmount = 10;
+          scrollText.style.transform = `translateY(${scrollAmount}px)`;
+          scrollStopped = true;
+        }
+
+        function toggleAnimateScroll() {
+          if (scrollStopped) {
+            animateScroll();
+          } else {
+            stopAnimateScroll();
+            console.log("stoppping scroll");
+          }
+        }
+        // console.log(containerHeight);
+      });
+
+      //scroll
+    </script>
+  </body>
+</html>

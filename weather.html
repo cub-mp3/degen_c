@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Weather App</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+      /* style.css */
+      body {
+        font-family: Arial, sans-serif;
+        background: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      h2 {
+        font-weight: 100;
+      }
+
+      #weather-form {
+        width: 40%;
+        min-width: 300px;
+      }
+
+      #weather-result-container {
+        width: 100%;
+      }
+
+      #city-result,
+      #weather-result {
+        font-weight: bold;
+      }
+
+      .container {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      #chart-container {
+        width: 100%;
+        height: 40vw;
+        background-color: green;
+      }
+
+      input {
+        padding: 10px;
+        margin: 10px 0;
+        width: calc(100% - 22px);
+      }
+
+      button {
+        padding: 10px;
+        width: 100%;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      #weather-result {
+        margin-top: 20px;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Weather App</h1>
+      <form id="weather-form">
+        <input type="text" id="city" placeholder="Enter city name" required />
+        <button type="submit">Get Weather</button>
+      </form>
+      <div id="weather-result-container">
+        <h2>
+          the hottest it will be in
+          <span id="city-result"> </span>in the next week is
+          <span id="weather-result"></span> <span id="units"></span>
+        </h2>
+        data is from
+        <span id="time-from"></span> to
+        <span id="time-until"></span>
+        <div class="population-container"></div>
+        <div id="chart-container">
+          <canvas id="weather-chart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <script src="./src/weather.js"></script>
+  </body>
+</html>

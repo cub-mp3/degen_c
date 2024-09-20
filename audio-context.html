@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basic Audio Context</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+      }
+
+      .audio-player {
+        text-align: center;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="audio-list">
+      <div class="song-item-1" data-src="audio/anaylise/TSHA - Dancing In The Shadows (feat. Clementine Douglas).wav"></div>
+    </div>
+      <div class="song-item-2" data-src="audio/anaylise/Joy Orbison - flight fm.mp3" onclick=" loadSong()"></div>
+    </div>
+    <div class="audio-player">
+      <audio
+        src="audio/anaylise/Joy Orbison - flight fm.mp3"
+      ></audio>
+      <button
+        data-playing="false"
+        role="switch"
+        aria-checked="false"
+        id="playButton"
+      >
+        Play Sound
+      </button>
+      <input type="range" id="volume" min="0" max="2" value="1" step="0.01" />
+      <input type="range" id="panner" min="-1" max="1" value="0" step="0.01" />
+      <input type="range" id="filter" min="-100" max="100" value="0" step="1" />
+    </div>
+    <script src="./src/audio-context.js"></script>
+  </body>
+</html>

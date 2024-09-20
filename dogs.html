@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Cat Image</title>
+    <style>
+      #fetch-button {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        font-size: 16px;
+      }
+      .images {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin: 20px;
+      }
+      .images img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Random Cat Images</h1>
+    <button id="fetch-button">Get Random Cat</button>
+    <div class="images">
+      <!-- Images will be dynamically inserted here -->
+    </div>
+
+    <script>
+      document
+        .getElementById("fetch-button")
+        .addEventListener("click", fetchRandomCat);
+
+      function fetchRandomCat() {
+        fetch("https://api.thecatapi.com/v1/images/search?limit=9")
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            const imagesContainer = document.querySelector(".images");
+            imagesContainer.innerHTML = ""; // Clear previous images
+
+            data.forEach((cat, index) => {
+              const imgElement = document.createElement("img");
+              imgElement.src = cat.url;
+              imgElement.alt = `Random Cat ${index + 1}`;
+              imagesContainer.appendChild(imgElement);
+            });
+          })
+          .catch((error) =>
+            console.error("Error fetching the cat images:", error)
+          );
+      }
+
+      // Fetch a random cat images on page load
+      fetchRandomCat();
+    </script>
+  </body>
+</html>

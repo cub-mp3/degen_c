@@ -2,20 +2,173 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Random Polygon</title>
-    <link rel="icon" type="image/png" href="imgs/c.png" />
     <link rel="stylesheet" href="./src/main.css" />
     <script defer type="module" src="./src/script.js"></script>
   </head>
   <body>
-    <div class="container">
-      <h1>coming soon</h1>
-      <a href="polygoggins.html">polygoggins</a>
-      <a href="foocebook.html">foocebook</a>
-      <a href="wideputin.html">wide putin</a>
-      <a href="face-generator.html">face generator</a>
-      <a href="free-samples.html">free samples</a>
-      <a href="free-samples.html">test2</a>
-    </div>
+    <header class="header">
+      <div class="space-between">
+        <h1 class="header__title">Degen-C</h1>
+        <div class="header__menu-icon" id="menu-icon">
+          <img src="https://placebear.com/100/100" alt="Menu Icon" />
+        </div>
+      </div>
+      <nav class="header__nav">
+        <ul class="header__nav-links" id="nav-links">
+          <li class="header__nav-item">
+            <a class="header__nav-link" href="#">Home</a>
+            <div class="projects-content projects-hidden">
+              <a href="weather.html">Home 1</a>
+              <a href="#">Home 2</a>
+            </div>
+          </li>
+          <li class="header__nav-item">
+            <a class="header__nav-link" href="dogs.html">About</a>
+            <div class="projects-content projects-hidden">
+              <a href="#">About1</a>
+              <a href="#">About2</a>
+            </div>
+          </li>
+          <li class="header__nav-item">
+            <a class="header__nav-link" href="#">Projects</a>
+            <div class="projects-content projects-hidden">
+              <a href="#">Project 1</a>
+              <a href="#">Project 2</a>
+              <a href="#">Project 3</a>
+            </div>
+          </li>
+          <li class="header__nav-item">
+            <a class="header__nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="main-content">
+      <div class="links" style="display: flex; flex-direction: column">
+        <a href="all-back.html">all-back</a>
+        <a href="audio-context.html">audio-context.html</a>
+        <a href="calculator.html">calculator</a>
+        <a href="dogs.html">dogs</a>
+        <a href="foocebook.html">foocebook</a>
+        <a href="free-samples.html">free-samples</a>
+        <a href="polygoggins.html">polygoggins</a>
+        <a href="quiz.html">quiz</a>
+        <a href="song-player.html">song-player</a>
+        <a href="squares.html">face-gen</a>
+        <a href="text-scroll.html">text-scroll</a>
+        <a href="weather.html">weather</a>
+        <a href="wideputin.html">wide-putin</a>
+      </div>
+      <section class="about">
+        <div class="about__container container">
+          <img
+            class="about__image lazy-load"
+            src="https://placebear.com/64/36"
+            data-src="https://placebear.com/700/350"
+            alt="Photo"
+          />
+          <h2 class="about__title">About</h2>
+          <p class="about__text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum
+            dolor sit, amet consectetur adipisicing elit. Quis accusamus
+            mollitia asperiores soluta corporis officia labore enim ea incidunt
+            voluptates?
+          </p>
+        </div>
+      </section>
+      <section class="np3-collective">
+        <div class="np3-collective container">
+          <img
+            class="lazy-load"
+            src="https://placebear.com/64/36"
+            data-src="https://placebear.com/800/400"
+            alt="Photo"
+          />
+          <h2 class="about__title">NP3 collective</h2>
+          <p class="about__text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum
+            dolor sit, amet consectetur adipisicing elit. Quis accusamus
+            mollitia asperiores soluta corporis officia labore enim ea incidunt
+            voluptates?
+          </p>
+        </div>
+      </section>
+      <section class="music">
+        <div class="music container">
+          <img
+            class="lazy-load"
+            src="https://placebear.com/64/36"
+            data-src="https://placebear.com/640/360"
+            alt="Photo"
+          />
+          <h2 class="about__title">Music</h2>
+          <p class="about__text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum
+            dolor sit, amet consectetur adipisicing elit. Quis accusamus
+            mollitia asperiores soluta corporis officia labore enim ea incidunt
+            voluptates?
+          </p>
+        </div>
+      </section>
+      <section class="slider-section">
+        <div class="slider">
+          <div class="slides">
+            <img
+              class="lazy-load"
+              src="https://placebear.com/100/50"
+              data-src="https://placebear.com/1000/500"
+              alt="Image 1"
+            />
+            <img
+              class="lazy-load"
+              src="https://placebear.com/100/50"
+              data-src="https://placebear.com/1000/500"
+              alt="Image 1"
+            />
+            <img
+              class="lazy-load"
+              src="https://placebear.com/100/50"
+              data-src="https://placebear.com/1000/500"
+              alt="Image 1"
+            />
+            <img
+              class="lazy-load"
+              src="https://placebear.com/100/50"
+              data-src="https://placebear.com/1000/500"
+              alt="Image 1"
+            />
+          </div>
+          <button class="prev">&#10094;</button>
+          <button class="next">&#10095;</button>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <section>
+        <div class="footer__container container">
+          <div class="space-between">
+            <div class="left-container footer__left-container">
+              <div class="logo-container">
+                <a href="index.html"
+                  ><img
+                    class="lazy-load"
+                    src="https://placebear.com/10/10"
+                    data-src="https://placebear.com/100/100"
+                    alt="Logo"
+                /></a>
+              </div>
+            </div>
+            <div class="right-container">
+              <div class="footer__icon"><a href="#">🎵</a></div>
+              <div class="footer__icon"><a href="#">📷</a></div>
+              <div class="footer__icon"><a href="#">🎮</a></div>
+              <div class="footer__icon"><a href="#">🅱️</a></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </footer>
   </body>
 </html>

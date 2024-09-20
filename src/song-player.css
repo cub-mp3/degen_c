@@ -209,32 +209,6 @@ a {
   background-size: cover; /* THIS creates the animation! */
   transition: transform 1s;
 }
-/* #time-2 {
-  background-image: url(/songs-for-website/covers/time-2.png);
-  background-size: contain;
-}
-#another-npc {
-  background-image: url(/songs-for-website/covers/another-npc.png);
-  background-size: contain;
-}
-#soup {
-  background-image: url(/songs-for-website/covers/soup.png);
-  background-size: contain;
-}
-#the-wheel-of-fortune-1 {
-  background-image: url(/songs-for-website/covers/the-wheel-of-fortune.png);
-  background-size: contain;
-}
-
-#the-wheel-of-fortune-2 {
-  background-image: url(/songs-for-website/covers/the-wheel-of-fortune.png);
-  background-size: contain;
-}
-
-#head-in-the-clouds {
-  background-image: url(/songs-for-website/covers/head-in-the-clouds.png);
-  background-size: contain;
-} */
 
 .slider__btn {
   position: absolute;

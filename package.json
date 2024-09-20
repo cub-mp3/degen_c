@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@parcel/transformer-raw": "^2.12.0",
+    "@types/webaudioapi": "^0.0.27",
     "buffer": "^6.0.3",
     "http-server": "^14.1.1",
     "parcel": "^2.12.0",

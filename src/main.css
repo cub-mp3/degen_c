@@ -1,6 +1,7 @@
 /* Color Variables */
 :root {
-  --primary-color: #3498db; /* Primary Blue */
+  --primary-color: #3498db;
+  --light-blue: #3498db59 /* Primary Blue */;
   --secondary-color: #2e63cc; /* Secondary Green */
   --accent-color: #e74c3c; /* Accent Red */
   --background-color: #f0f0f0; /* Light Grey Background */
@@ -9,29 +10,93 @@
   --pink: rgb(255, 91, 220);
 }
 
-/* Base styles */
 :root {
-  --header-font-size: 3rem;
-  --subheader-font-size: 2rem;
+  --header-font-size: 2rem; /* Default size for small devices (e.g., mobile phones) */
+  --subheader-font-size: 1.5rem;
   --body-font-size: 1rem;
-  --small-font-size: 0.5rem;
+  --small-font-size: 0.75rem;
 }
 
 @media (min-width: 768px) {
   :root {
-    --header-font-size: 5rem;
-    --subheader-font-size: 5rem;
-    --body-font-size: 1.5rem;
-    --small-font-size: 0.75rem;
+    --header-font-size: 2.5rem; /* Adjusted for tablets */
+    --subheader-font-size: 2rem;
+    --body-font-size: 1.2rem;
+    --small-font-size: 0.875rem;
+  }
+}
+@media (min-width: 1024px) {
+  :root {
+    --header-font-size: 3rem; /* Adjusted for desktops */
+    --subheader-font-size: 2.5rem;
+    --body-font-size: 1.4rem;
+    --small-font-size: 1rem;
+  }
+}
+@media (min-width: 1440px) {
+  :root {
+    --header-font-size: 3.5rem; /* Larger screens (e.g., large desktops) */
+    --subheader-font-size: 3rem;
+    --body-font-size: 1.6rem;
+    --small-font-size: 1.125rem;
   }
 }
 :root {
-  --spacing-xlarge: 4em; /* Extra large spacing */
-  --spacing-large: 2em; /* Large spacing */
-  --spacing-medium: 1.5em; /* Medium spacing */
-  --spacing-small: 1em; /* Small spacing */
+  --spacing-xlarge: 4em; /* Extra large spacing for large screens */
+  --spacing-large: 2.5em; /* Large spacing for medium to large screens */
+  --spacing-medium: 1.5em; /* Medium spacing for tablets and larger screens */
+  --spacing-small: 1em; /* Small spacing for mobile devices */
+  --spacing-xsmall: 0.5em; /* Extra small spacing for mobile devices */
 }
 
+@media (min-width: 768px) {
+  :root {
+    --spacing-xlarge: 4.5em; /* Slightly larger for tablets */
+    --spacing-large: 3em; /* Larger for tablets and smaller desktops */
+    --spacing-medium: 1.75em; /* Slightly larger for better spacing on tablets */
+    --spacing-small: 1.2em; /* Increased for tablets */
+    --spacing-xsmall: 0.75em; /* Increased for tablets */
+  }
+}
+@media (min-width: 1024px) {
+  :root {
+    --spacing-xlarge: 5em; /* Larger for desktops */
+    --spacing-large: 3.5em; /* Increased for desktops */
+    --spacing-medium: 2em; /* Larger for better spacing on desktops */
+    --spacing-small: 1.5em; /* Increased for desktops */
+    --spacing-xsmall: 1em; /* Increased for larger desktops */
+  }
+}
+@media (min-width: 1440px) {
+  :root {
+    --spacing-xlarge: 6em; /* Extra large for large screens */
+    --spacing-large: 4em; /* Large for very large screens */
+    --spacing-medium: 2.5em; /* Medium for very large screens */
+    --spacing-small: 1.75em; /* Increased for larger screens */
+    --spacing-xsmall: 1.25em; /* Increased for very large screens */
+  }
+}
+/* Base styles for the main section */
+main {
+  max-width: 100%; /* Ensure it doesn't exceed viewport width */
+}
+
+/* For larger screens */
+@media (min-width: 1024px) {
+  main {
+    max-width: 960px; /* Suitable for larger tablets and smaller desktops */
+  }
+}
+@media (min-width: 1200px) {
+  main {
+    max-width: 1200px; /* Common max width for large desktops */
+  }
+}
+@media (min-width: 1600px) {
+  main {
+    max-width: 1400px; /* For very large screens */
+  }
+}
 /* Reset Styles */
 * {
   margin: 0;
@@ -91,10 +156,14 @@ button {
 
 button:hover {
   background-color: var(--secondary-color);
-  transform: translateY(-2px);
 }
 
-button ul {
+button:focus {
+  outline: 2px solid var(--secondary-color); /* Custom focus border color */
+  outline-offset: 2px; /* Space between the border and the button */
+}
+
+button ul a {
   list-style-type: none;
 }
 
@@ -107,14 +176,13 @@ footer,
 header,
 section {
   width: 100%;
+  padding: 0;
 }
 @media (min-width: 768px) {
   footer,
   header,
   section {
     padding-bottom: var(--spacing-medium);
-    padding-left: var(--spacing-medium);
-    padding-right: var(--spacing-medium);
   }
 }
 
@@ -122,7 +190,7 @@ section {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-medium);
+  padding: var(--spacing-xsmall);
   background-color: #f8f8f8;
   width: 100%;
   background-color: var(--background-color);
@@ -130,7 +198,9 @@ section {
 
 /* Basic Layout and Container Styles */
 .container {
-  padding: 0;
+  margin-bottom: var(--spacing-medium); /* This sets margin on the bottom */
+  padding: var(--spacing-xsmall); /* This sets padding on all four sides */
+  box-sizing: border-box;
   width: 100%;
   border: 2px solid var(--border-color);
   display: flex;
@@ -139,8 +209,19 @@ section {
 }
 @media (min-width: 768px) {
   .container {
-    padding: var(--spacing-large); /* 20px */
+    padding: var(--spacing-large); /* 20px padding on all sides */
   }
+}
+
+section {
+  transition: opacity 0.2s ease-in-out;
+  opacity: 1;
+  box-sizing: border-box;
+  padding: var(--spacing-xsmall);
+}
+
+.hidden {
+  opacity: 0;
 }
 
 .row-flex {
@@ -181,14 +262,13 @@ section {
 /* start of code --- nav */
 header .header__title {
   font-size: var(--header-font-size);
+  display: flex;
+  align-items: center;
   border: 1px solid black;
 }
 header .header__nav-links {
   padding-left: var(--spacing-large);
   padding-top: var(--spacing-large);
-}
-header .header__nav-links a {
-  font-size: var(--header-font-size);
 }
 
 .header__nav-links {
@@ -200,19 +280,127 @@ header .header__nav-links a {
   height: 100%;
   flex-direction: column;
   width: 100%;
-  background-color: var(--background-color);
 }
 .header__nav-links li {
   color: var(--primary-color);
-  padding-bottom: var(--spacing-xlarge);
+  list-style: none;
+}
+.header__nav-links li .header__nav-link {
+  transition: all 0.5s;
+}
+.header__nav-links .projects-hidden {
+  display: none;
+  background-color: red;
 }
 
+@media (min-width: 768px) {
+  header .header__menu-icon {
+    display: none;
+  }
+  header .header__nav-links {
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    position: static;
+  }
+  header .header__nav-links .header__nav-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-inline: var(--spacing-small);
+    flex-direction: column;
+    position: relative;
+  }
+  header .header__nav-links .header__nav-item .header__nav-link {
+    padding-inline: var(--spacing-medium);
+    border: 2px soild red;
+    font-size: var(--body-font-size);
+    background-color: var(--primary-color);
+    z-index: 2;
+  }
+  header .header__nav-links .header__nav-item .projects-content {
+    position: absolute;
+    background-color: var(--background-color);
+    top: var(--spacing-small); /* Adjust this value as needed */
+    left: 0;
+    padding-block: var(--spacing-small);
+    width: 100%; /* Matches width to parent */
+    z-index: 1;
+  }
+  header .header__nav-links .header__nav-item .projects-content a {
+    box-sizing: border-box;
+    display: block;
+    padding-bottom: 1em;
+  }
+  header .header__nav-links .header__nav-item .projects-content a:hover {
+    background-color: var(--light-blue);
+  }
+}
 .header__menu-icon {
   z-index: 1000;
 }
 
+.slider {
+  position: relative;
+  max-width: 80%;
+  margin: auto;
+  overflow: hidden; /* Hide overflow to ensure only one image is visible */
+}
+.slider .slides {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%; /* Ensure it takes up the full width of the slider */
+}
+.slider .slides img {
+  flex-shrink: 0;
+  height: auto; /* Maintain aspect ratio */
+  object-fit: fill; /* Maintain aspect ratio and cover the container */
+  object-position: center; /* Center the image within the container */
+}
+
+.prev,
+.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
 .footer__left-container {
   justify-content: center;
+}
+
+footer .right-container {
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+footer .right-container a {
+  border: 1px solid var(--border-color);
+  aspect-ratio: 1/1;
+  display: inline-block;
+  font-size: var(--subheader-font-size);
+  text-decoration: none;
+  margin: var(--spacing-xsmall);
+}
+@media (min-width: 768px) {
+  footer .right-container a {
+    font-size: var(--body-font-size);
+  }
 }
 
 .goggins-container {
@@ -279,6 +467,16 @@ header .header__nav-links a {
 }
 .facebook .no {
   flex-direction: row;
+}
+
+img {
+  transition: all 1s;
+  width: 100%;
+}
+
+.lazy-load {
+  transition: all 1s;
+  filter: blur(10px);
 }
 
 .small-img {
