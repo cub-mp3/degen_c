@@ -1,74 +1,13 @@
-import cover1 from "./songs-for-website/covers/time-2.png";
+// import time2cover from "../songs-for-website/covers/time-2.png";
 
-import cover2 from "./songs-for-website/covers/another-npc.png";
-import cover3 from "./songs-for-website/covers/soup.png";
-import cover4 from "./songs-for-website/covers/the-wheel-of-fortune.png";
-import cover5 from "./songs-for-website/covers/the-wheel-of-fortune.png";
-import cover6 from "./songs-for-website/covers/head-in-the-clouds.png";
+// const newDiv = document.createElement("div");
 
-import source1 from "./songs-for-website/songs/time-2.wav";
-import source2 from "./songs-for-website/songs/another-npc.wav";
-import source3 from "./songs-for-website/songs/soup.wav";
-import source4 from "./songs-for-website/songs/the-wheel-of-fortune-1.wav";
-import source5 from "./songs-for-website/songs/the-wheel-of-fortune-2.wav";
-import source6 from "./songs-for-website/songs/head-in-the-clouds.wav"; // Assuming you want to include this for the last song
+// newDiv.style.backgroundImage = `url(${time2cover})`;
+// newDiv.style.height = "200px";
+// newDiv.style.width = "200px";
+// newDiv.style.backgroundSize = "contain";
 
-const songs = [
-  {
-    id: "time-2",
-    cover: cover1,
-    src: source1,
-    name: "time 2",
-    tempo: "128 BPM",
-    key: "E Minor",
-    release: "09.09.24",
-  },
-  {
-    id: "another-npc",
-    cover: cover2,
-    src: source2,
-    name: "when another npc tells u not to put ur student loan into shitcoin",
-    tempo: "128 BPM",
-    key: "E Minor",
-    release: "09.09.24",
-  },
-  {
-    id: "soup",
-    cover: cover3,
-    src: source3,
-    name: "soup (with sula)",
-    tempo: "128 BPM",
-    key: "E Minor",
-    release: "09.09.24",
-  },
-  {
-    id: "the-wheel-of-fortune-1",
-    cover: cover4,
-    src: source4,
-    name: "the wheel of fortune i",
-    tempo: "128 BPM",
-    key: "E Minor",
-    release: "09.09.24",
-  },
-  {
-    id: "the-wheel-of-fortune-2",
-    cover: cover5, // Same cover as the first wheel of fortune
-    src: source5, // Source for the second wheel of fortune
-    name: "the wheel of fortune ii",
-    tempo: "128 BPM",
-    key: "E Minor",
-    release: "09.09.24",
-  },
-  {
-    id: "head-in-the-clouds",
-    cover: cover6,
-    src: source6,
-    name: "head in the clouds",
-    tempo: "128 BPM",
-    key: "E Minor",
-    release: "09.09.24",
-  },
-];
+// document.body.prepend(newDiv);
 
 const audioControls = document.querySelector(".audio-controls-container");
 const audioElement = document.getElementById("audioElement");
@@ -81,64 +20,53 @@ const songKeyElement = document.getElementById("song-key");
 const songReleaseElement = document.getElementById("song-key");
 const albumCoverElement = document.querySelector(".album-cover");
 const songDownloadElement = document.getElementById("song-download");
+const songItems = document.querySelectorAll(".song-item");
 const skipButton = document.querySelector(".skip-button");
 const prevButton = document.querySelector(".prev-button");
 const mainControls = document.querySelector(".main-controls");
 
-const slider = document.querySelector(".slider");
-
-const btnLeft = document.querySelector(".slider__btn--left");
-
-const btnRight = document.querySelector(".slider__btn--right");
+//play song
 
 let songIndex;
 
-let curSlide = 0;
-
-//play songs
-
-songs.forEach((song, i) => {
-  const songItem = document.createElement("div");
-  songItem.classList.add("song-item", "slide");
-  slider.appendChild(songItem);
-  // const songCover = song.cover;
-  songItem.style.backgroundImage = `url('${song.cover}')`;
-
-  songItem.style.backgroundSize = "contain";
-  songItem.style.transform = `translateX(${i * 100}%)`;
+songItems.forEach((item) => {
+  setCover(item);
 });
 
-const songItems = document.querySelectorAll(".song-item");
-console.log(songItems);
+for (let i = 0; i < songItems.length; i++) {
+  const item = songItems[i];
+  item.setAttribute("data-index", i);
+}
 
-songItems.forEach((item, i) => {
-  item.addEventListener("click", () => {
-    playSong(i);
-  });
-});
+function setCover(item) {
+  const songCover = item.dataset.cover;
+  item.style.backgroundImage = `url("/${songCover}")`;
+  item.style.backgroundSize = "contain";
+}
 
-function playSong(index) {
-  const song = songs[index];
-  console.log(song);
-  const songSrc = song.src;
+function playSong(item) {
+  const songSrc = item.dataset.src;
   audioElement.src = songSrc;
   // console.log(songSrc);
   audioElement.play();
   if ((audioControls.style.display = "none")) {
     audioControls.style.display = "grid";
   }
-  const songName = song.name;
-  const songTempo = song.tempo;
-  const songKey = song.key;
-  const songRelease = song.release;
-  const songCover = song.cover;
-  songIndex = index;
+
+  const songName = item.dataset.name;
+  const songTempo = item.dataset.tempo;
+  const songKey = item.dataset.key;
+  const songRelease = item.dataset.release;
+  const songCover = item.dataset.cover;
+
+  songIndex = item.dataset.index;
+  console.log(songIndex);
 
   songNameElement.textContent = `${songName}`;
   songTempoElement.textContent = `tempo: ${songTempo}`;
   songKeyElement.textContent = `key: ${songKey}`;
   songReleaseElement.textContent = `release date: ${songRelease}`;
-  albumCoverElement.style.backgroundImage = `url("${songCover}")`;
+  albumCoverElement.style.backgroundImage = `url("/${songCover}")`;
   songDownloadElement.style.display = "block";
   songDownloadElement.href = songSrc;
 
@@ -151,51 +79,33 @@ function playSong(index) {
   // songIndex = songs.
 }
 
+songItems.forEach((item) => {
+  item.addEventListener("click", () => {
+    playSong(item);
+  });
+});
+
 skipButton.addEventListener("click", function () {
   songIndex = (parseInt(songIndex) + 1) % songItems.length;
 
-  playSong(songIndex);
+  playSongByIndex(songIndex);
 });
 
 prevButton.addEventListener("click", function () {
   songIndex = (songIndex - 1 + songItems.length) % songItems.length; // Decrement and wrap around
   console.log(`${songIndex} remainder ${songItems.length}`);
-  playSong(songIndex);
+  playSongByIndex(songIndex);
 });
 // prevButton.addEventListener("click", function () {
 //   songIndex--;
 //   playSongByIndex(songIndex);
 // });
 
-//sliider setup
-
-const slides = document.querySelectorAll(".slide");
-const maxLength = slides.length;
-
-btnRight.addEventListener("click", function () {
-  // console.log(curSlide);
-  if (curSlide === maxLength - 3) {
-    curSlide = 0;
-  } else {
-    curSlide += 1;
-    console.log(curSlide);
-  }
-
-  slides.forEach(
-    (s, i) => (s.style.transform = `translateX(${100 * (i - curSlide)}%)`)
-  );
-});
-btnLeft.addEventListener("click", function () {
-  if (curSlide === 0) {
-    curSlide = maxLength - 3;
-  } else {
-    curSlide -= 1;
-  }
-
-  slides.forEach(
-    (s, i) => (s.style.transform = `translateX(${100 * (i - curSlide)}%)`)
-  );
-});
+function playSongByIndex(index) {
+  const item = songItems[index];
+  // console.log(item);
+  playSong(item);
+}
 
 //fx
 
@@ -315,3 +225,50 @@ function setupAudio() {
 }
 
 setupAudio();
+
+//slider
+
+////////////////////////////////////
+
+const slides = document.querySelectorAll(".slide");
+const slider = document.querySelector(".slider");
+
+const btnLeft = document.querySelector(".slider__btn--left");
+
+const btnRight = document.querySelector(".slider__btn--right");
+
+const maxLength = slides.length;
+
+// slider.style.transform = 'scale(0.3)';
+
+slides.forEach((s, i) => {
+  s.style.transform = `translateX(${i * 100}%)`;
+});
+
+btnRight.addEventListener("click", function () {
+  // console.log(curSlide);
+  if (curSlide === maxLength - 3) {
+    curSlide = 0;
+  } else {
+    curSlide += 1;
+  }
+
+  slides.forEach(
+    (s, i) => (s.style.transform = `translateX(${100 * (i - curSlide)}%)`)
+  );
+});
+btnLeft.addEventListener("click", function () {
+  if (curSlide === 0) {
+    curSlide = maxLength - 3;
+  } else {
+    curSlide -= 1;
+  }
+
+  slides.forEach(
+    (s, i) => (s.style.transform = `translateX(${100 * (i - curSlide)}%)`)
+  );
+});
+
+//array variable creates reference;
+
+//numeric can creates a copy

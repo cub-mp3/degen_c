@@ -1,10 +1,10 @@
 {
-  "name": "geometry",
+  "name": "degen-c",
   "version": "1.0.0",
   "scripts": {
     "clean": "rimraf dist",
     "start": "npm-run-all --parallel watch-css serve",
-    "serve": "parcel index.html",
+    "serve": "  rm -rf .parcel-cache && parcel song-player.html",
     "build": "parcel build index.html",
     "build-css": "sass src/main.scss src/main.css",
     "watch-css": "sass --watch src/main.scss:src/main.css"
@@ -18,6 +18,7 @@
     "scss": "^0.2.4"
   },
   "devDependencies": {
+    "@parcel/resolver-default": "^2.12.0",
     "@parcel/transformer-raw": "^2.12.0",
     "@types/webaudioapi": "^0.0.27",
     "buffer": "^6.0.3",
@@ -28,13 +29,5 @@
     "rimraf": "^5.0.7",
     "sass": "^1.77.2",
     "url": "^0.11.3"
-  },
-  "description": "",
-  "parcel": {
-    "transformers": {
-      "*.mp4": [
-        "@parcel/transformer-raw"
-      ]
-    }
   }
 }

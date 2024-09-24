@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Simple Song Player</title>
-    <link rel="stylesheet" href="./src/song-player.css" />
+    <link rel="stylesheet" href="src/song-player.css" />
   </head>
   <body>
     <div class="audio-section">
@@ -66,13 +66,19 @@
         <p id="song-tempo"></p>
         <p id="song-key"></p>
         <p id="song-release"></p>
-        <a id="song-download" class="button" download>Download</a>
+        <a
+          id="song-download"
+          class="button"
+          href="songs-for-website/songs/time-2.wav"
+          download
+          >Download</a
+        >
       </div>
     </div>
 
     <div class="slider-section">
       <div class="slider">
-        <!-- <div
+        <div
           class="slide song-item"
           id="time-2"
           data-cover="songs-for-website/covers/time-2.png"
@@ -132,7 +138,7 @@
           data-key="E Minor"
           data-release=" 09.09.24"
           id="head-in-the-clouds"
-        ></div> -->
+        ></div>
 
         <button class="slider__btn slider__btn--left">&larr;</button>
         <button class="slider__btn slider__btn--right">&rarr;</button>
@@ -140,6 +146,6 @@
       </div>
     </div>
 
-    <script src="./src/song-player.js" type="module"></script>
+    <script src="./src/song-player.js"></script>
   </body>
 </html>

@@ -191,16 +191,15 @@ a {
   position: relative;
   /* margin-top: var(--spacing-small); */
 
+  /* IN THE END */
   overflow: hidden;
   border: var(--border-style);
-  border: 1px solid black;
 }
 
 .slide {
   position: absolute;
   top: 0;
-  /* width: 20em; */
-  width: calc(20em);
+  width: calc(100% / 3);
   height: 100%;
   cursor: pointer;
 
@@ -209,10 +208,6 @@ a {
   justify-content: center;
   background-size: cover; /* THIS creates the animation! */
   transition: transform 1s;
-  box-sizing: border-box;
-  border: none;
-  margin: 0;
-  padding: 0;
 }
 
 .slider__btn {
@@ -229,7 +224,6 @@ a {
   font-size: var(--font-size-large);
   cursor: pointer;
   transition: all 0.2s ease;
-  overflow: hidden;
 }
 
 .slider__btn:hover {
