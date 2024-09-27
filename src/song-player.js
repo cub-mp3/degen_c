@@ -147,25 +147,15 @@ function playSong(index) {
   }
 
   mainControls.style.visibility = "visible";
-
-  // songIndex = songs.
 }
 
 skipButton.addEventListener("click", function () {
-  songIndex = (parseInt(songIndex) + 1) % songItems.length;
-
-  playSong(songIndex);
+  playSong((parseInt(songIndex) + 1) % songItems.length);
 });
 
 prevButton.addEventListener("click", function () {
-  songIndex = (songIndex - 1 + songItems.length) % songItems.length; // Decrement and wrap around
-  console.log(`${songIndex} remainder ${songItems.length}`);
-  playSong(songIndex);
+  playSong((songIndex - 1 + songItems.length) % songItems.length);
 });
-// prevButton.addEventListener("click", function () {
-//   songIndex--;
-//   playSongByIndex(songIndex);
-// });
 
 //sliider setup
 
@@ -199,22 +189,31 @@ btnLeft.addEventListener("click", function () {
 
 //fx
 
+//add reset button
+//add loading icon
+
+//add visuals for amounts of fx
+
+function updateAudioParam(param, control) {
+  param.value = control.value;
+}
+
+function resetControls(param, control, resetValue = 0) {
+  control.value = resetValue;
+  updateAudioParam(param, control);
+}
+
 //pan
 
 const panner = new StereoPannerNode(audioContext);
 const pannerControl = document.getElementById("panner-control");
 
-function connectPan() {
-  panner.pan.value = pannerControl.value;
-}
-
 pannerControl.addEventListener("input", () => {
-  connectPan();
+  updateAudioParam(panner.pan, pannerControl);
 });
 
 pannerControl.addEventListener("dblclick", () => {
-  pannerControl.value = 0;
-  connectPan();
+  resetControls(panner.pan, pannerControl);
 });
 
 //delay
@@ -223,52 +222,45 @@ delay.delayTime.value = 0.5;
 
 const delayControl = document.getElementById("delay-control");
 const feedback = audioContext.createGain();
-delayControl.value = 0;
-connectDelay();
-
-function connectDelay() {
-  feedback.gain.value = delayControl.value;
-}
 
 delayControl.addEventListener("input", () => {
-  feedback.gain.value = delayControl.value;
+  updateAudioParam(feedback.gain, delayControl);
 });
 
 delayControl.addEventListener("dblclick", () => {
-  delayControl.value = 0;
-  connectDelay();
+  resetControls(feedback.gain, delayControl);
 });
 
-//reverb
+//distortion
+const distortionControl = document.getElementById("distortion-control"); // Assume you have an input element
 
-// const reverb = audioContext.createConvolver();
+const distortion = audioContext.createWaveShaper();
 
-// async function loadImpulseResponse(url) {
-//   const response = await fetch(url);
-//   const arrayBuffer = await response.arrayBuffer();
-//   const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+function makeDistortionCurve(amount) {
+  const samples = 44100;
+  const curve = new Float32Array(samples);
 
-//   return audioBuffer;
-// }
-// //connecting everything
+  for (let i = 0; i < samples; i++) {
+    const x = (i * 2) / samples - 1;
+    curve[i] = x * (amount + 1);
+  }
+  return curve;
+}
 
-// loadImpulseResponse("./audio/IR.wav").then((impulseResponse) => {
-//   reverb.buffer = impulseResponse;
-// });
+distortion.oversample = "2x"; // Optional, for smoother sound
 
-// const reverbGain = audioContext.createGain();
+function resetDistortion() {
+  distortionControl.value = 0;
+  distortion.curve = makeDistortionCurve(distortionControl.value);
+}
 
-// const reverbControl = document.getElementById("reverb-control");
+distortionControl.addEventListener("input", () => {
+  distortion.curve = makeDistortionCurve(distortionControl.value);
+});
 
-// reverbControl.value = 0;
-
-// function connectReverb() {
-//   reverbGain.gain.value = reverbControl.value;
-// }
-
-// reverbControl.addEventListener("input", () => {
-//   connectReverb();
-// });
+distortionControl.addEventListener("dblclick", () => {
+  resetDistortion();
+});
 
 //filter
 
@@ -296,15 +288,21 @@ filterControl.addEventListener("input", () => {
 });
 
 filterControl.addEventListener("dblclick", () => {
+  resetFilter();
+});
+
+function resetFilter() {
   filterControl.value = 0;
   filter.frequency.value = filterControl.value;
   filter.type = "allpass";
   filter.frequency.value = audioContext.sampleRate / 2; // Set to Nyquist frequency
   // console.log("filter is neutral");
-});
+}
 
 function setupAudio() {
   track
+    .connect(distortion)
+
     .connect(delay)
     .connect(feedback)
     .connect(delay)
@@ -315,3 +313,18 @@ function setupAudio() {
 }
 
 setupAudio();
+
+const resetFxButton = document.getElementById("reset-fx");
+
+function initFx() {
+  resetControls(feedback.gain, delayControl);
+  resetControls(panner.pan, pannerControl);
+  resetDistortion();
+  resetFilter();
+}
+
+initFx();
+
+resetFxButton.addEventListener("click", function () {
+  initFx();
+});

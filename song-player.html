@@ -29,19 +29,23 @@
             value="0"
             step="0.01"
           />
-          <!-- <input
+          <label for="distortion-control">distortion lol</label>
+
+          <input
             type="range"
-            id="reverb-control"
+            id="distortion-control"
             min="0"
-            max="1"
+            max="10"
             value="0"
             step="0.01"
-          /> -->
+          />
+
+          <button id="reset-fx" class="button">reset</button>
         </div>
         <div class="main-controls-container margin-block-small">
           <div class="album-cover"></div>
           <div class="main-controls">
-            <audio id="audioElement" controls></audio>
+            <audio id="audioElement" preload="auto" controls></audio>
             <div class="skip-prev-buttons">
               <button class="prev-button button">&#9664;</button>
               <button class="skip-button button">&#9654;</button>
@@ -72,68 +76,6 @@
 
     <div class="slider-section">
       <div class="slider">
-        <!-- <div
-          class="slide song-item"
-          id="time-2"
-          data-cover="songs-for-website/covers/time-2.png"
-          data-src="songs-for-website/songs/time-2.wav"
-          data-name="time 2"
-          data-tempo="128 BPM"
-          data-key="E Minor"
-          data-release=" 09.09.24"
-        ></div>
-
-        <div
-          class="slide song-item"
-          data-cover="songs-for-website/covers/another-npc.png"
-          data-src="songs-for-website/songs/another-npc.wav"
-          data-name="when another npc tells u not to put ur student loan into shitcoin"
-          data-tempo="128 BPM"
-          data-key="E Minor"
-          data-release=" 09.09.24"
-          id="another-npc"
-        ></div>
-        <div
-          class="slide song-item"
-          data-cover="songs-for-website/covers/soup.png"
-          data-src="songs-for-website/songs/soup.wav"
-          data-name="soup (with sula)"
-          data-tempo="128 BPM"
-          data-key="E Minor"
-          data-release=" 09.09.24"
-          id="soup"
-        ></div>
-        <div
-          class="slide song-item"
-          data-cover="songs-for-website/covers/the-wheel-of-fortune.png"
-          data-src="songs-for-website/songs/the-wheel-of-fortune-1.wav"
-          data-name="the wheel of fortune i"
-          data-tempo="128 BPM"
-          data-key="E Minor"
-          data-release=" 09.09.24"
-          id="the-wheel-of-fortune-1"
-        ></div>
-        <div
-          class="slide song-item"
-          data-cover="songs-for-website/covers/the-wheel-of-fortune.png"
-          data-src="songs-for-website/songs/the-wheel-of-fortune-2.wav"
-          data-name="the wheel of fortune ii"
-          data-tempo="128 BPM"
-          data-key="E Minor"
-          data-release=" 09.09.24"
-          id="the-wheel-of-fortune-2"
-        ></div>
-        <div
-          class="slide song-item"
-          data-cover="songs-for-website/covers/head-in-the-clouds.png"
-          data-src="songs-for-website/songs/head-in-the-clouds.wav"
-          data-name="head in the clouds"
-          data-tempo="128 BPM"
-          data-key="E Minor"
-          data-release=" 09.09.24"
-          id="head-in-the-clouds"
-        ></div> -->
-
         <button class="slider__btn slider__btn--left">&larr;</button>
         <button class="slider__btn slider__btn--right">&rarr;</button>
         <div class="dots"></div>
