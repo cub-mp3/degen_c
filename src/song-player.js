@@ -70,6 +70,7 @@ const songs = [
   },
 ];
 
+const audioSection = document.querySelector(".audio-section");
 const audioControls = document.querySelector(".audio-controls-container");
 const audioElement = document.getElementById("audioElement");
 const audioContext = new window.AudioContext();
@@ -93,40 +94,65 @@ const btnRight = document.querySelector(".slider__btn--right");
 
 let songIndex;
 
-let curSlide = 0;
+let playerDisplay;
 
 //play songs
 
-songs.forEach((song, i) => {
-  const songItem = document.createElement("div");
-  songItem.classList.add("song-item", "slide");
-  slider.appendChild(songItem);
-  // const songCover = song.cover;
-  songItem.style.backgroundImage = `url('${song.cover}')`;
+let songItems;
 
-  songItem.style.backgroundSize = "contain";
-  songItem.style.transform = `translateX(${i * 100}%)`;
-});
+function isPhoneSize() {
+  // console.log(window.innerWidth);
+  return window.innerWidth <= 480;
+}
 
-const songItems = document.querySelectorAll(".song-item");
-console.log(songItems);
+console.log(isPhoneSize());
 
-songItems.forEach((item, i) => {
-  item.addEventListener("click", () => {
-    playSong(i);
+function setupSongs() {
+  songItems = document.querySelectorAll(".song-item");
+  songItems.forEach((slide) => slide.remove());
+
+  songs.forEach((song, i) => {
+    const songItem = document.createElement("div");
+    songItem.classList.add("song-item", "slide");
+    slider.appendChild(songItem);
+    // const songCover = song.cover;
+    songItem.style.backgroundImage = `url('${song.cover}')`;
+
+    songItem.style.backgroundSize = "contain";
+
+    if (!isPhoneSize()) {
+      songItem.style.transform = `translateX(${i * 100}%)`;
+    }
   });
-});
+  songItems = document.querySelectorAll(".song-item");
+
+  songItems.forEach((item, i) => {
+    item.addEventListener("click", () => {
+      playSong(i);
+      if (isPhoneSize()) {
+        console.log("block");
+        audioSection.style.display = "block";
+        playerDisplay = true;
+      }
+    });
+  });
+}
+setupSongs();
 
 function playSong(index) {
   const song = songs[index];
   console.log(song);
+  // console.log(song);
   const songSrc = song.src;
   audioElement.src = songSrc;
   // console.log(songSrc);
   audioElement.play();
-  if ((audioControls.style.display = "none")) {
+  if (isPhoneSize()) {
+    audioControls.style.display = "flex";
+  } else {
     audioControls.style.display = "grid";
   }
+
   const songName = song.name;
   const songTempo = song.tempo;
   const songKey = song.key;
@@ -159,33 +185,42 @@ prevButton.addEventListener("click", function () {
 
 //sliider setup
 
-const slides = document.querySelectorAll(".slide");
-const maxLength = slides.length;
+function setupSlider() {
+  if (!isPhoneSize()) {
+    let curSlide = 0;
 
-btnRight.addEventListener("click", function () {
-  // console.log(curSlide);
-  if (curSlide === maxLength - 3) {
-    curSlide = 0;
-  } else {
-    curSlide += 1;
-    console.log(curSlide);
+    console.log("not phone size");
+    const slides = document.querySelectorAll(".slide");
+    const maxLength = slides.length;
+
+    btnRight.addEventListener("click", function () {
+      // console.log(curSlide);
+      if (curSlide === maxLength - 3) {
+        curSlide = 0;
+      } else {
+        curSlide += 1;
+        console.log(curSlide);
+      }
+
+      slides.forEach(
+        (s, i) => (s.style.transform = `translateX(${100 * (i - curSlide)}%)`)
+      );
+    });
+    btnLeft.addEventListener("click", function () {
+      if (curSlide === 0) {
+        curSlide = maxLength - 3;
+      } else {
+        curSlide -= 1;
+      }
+
+      slides.forEach(
+        (s, i) => (s.style.transform = `translateX(${100 * (i - curSlide)}%)`)
+      );
+    });
   }
+}
 
-  slides.forEach(
-    (s, i) => (s.style.transform = `translateX(${100 * (i - curSlide)}%)`)
-  );
-});
-btnLeft.addEventListener("click", function () {
-  if (curSlide === 0) {
-    curSlide = maxLength - 3;
-  } else {
-    curSlide -= 1;
-  }
-
-  slides.forEach(
-    (s, i) => (s.style.transform = `translateX(${100 * (i - curSlide)}%)`)
-  );
-});
+setupSlider();
 
 //fx
 
@@ -328,3 +363,30 @@ initFx();
 resetFxButton.addEventListener("click", function () {
   initFx();
 });
+
+window.addEventListener("resize", () => {
+  console.log("resize");
+  setupSongs();
+
+  setupSlider();
+});
+
+//audio toggle button
+
+const audioToggle = document.querySelector(".audio-toggle-button");
+
+function toggleAudio() {
+  if (playerDisplay) {
+    console.log("audio controls");
+    audioControls.style.display = "none";
+    audioSection.style.position = "relative";
+    playerDisplay = false;
+    console.log(playerDisplay);
+  } else {
+    playerDisplay = true;
+    console.log(playerDisplay);
+    audioControls.style.display = "flex";
+  }
+}
+
+window.toggleAudio = toggleAudio;

@@ -24,6 +24,7 @@ body {
   /* height: 100vh; */
   margin: 0;
   background-color: var(--color-grey);
+  background-color: red;
 
   font-size: 16px;
 }
@@ -76,6 +77,8 @@ a {
   align-items: center;
   border: var(--border-style);
   width: 100%;
+  box-sizing: border-box;
+  overflow: auto;
 }
 
 .songs-container {
@@ -92,8 +95,9 @@ a {
   background-color: var(--color-white);
   display: grid;
   grid-template-columns: 25% 50% 25%;
-  width: 100%;
   border: var(--border-style);
+  width: 80%;
+  min-width: 70rem;
 }
 
 .fx-container {
@@ -114,6 +118,7 @@ a {
   align-items: center;
   gap: var(--spacing-small);
   padding: var(--spacing-medium);
+  border: none;
 }
 
 .album-cover {
@@ -200,7 +205,7 @@ a {
   position: absolute;
   top: 0;
   /* width: 20em; */
-  width: calc(20em);
+  width: 20em;
   height: 100%;
   cursor: pointer;
 
@@ -208,6 +213,7 @@ a {
   align-items: center;
   justify-content: center;
   background-size: cover; /* THIS creates the animation! */
+  background-repeat: none;
   transition: transform 1s;
   box-sizing: border-box;
   border: none;
@@ -279,4 +285,106 @@ a {
   /* background-color: #fff; */
   background-color: #888;
   opacity: 1;
+}
+
+/* phone */
+
+@media (max-width: 480px) {
+  .audio-section {
+    margin: 0;
+    box-sizing: border-box;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    border: none;
+  }
+  .toggle-audio-button {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+  }
+
+  .audio-section .audio-controls-container {
+    flex-direction: column; /* This arranges items in a column */
+    /* border: none; */
+    height: 200%;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+  }
+  .control-item:nth-child(1) {
+    order: 2;
+  }
+  .control-item:nth-child(2) {
+    order: 1;
+    margin: 0;
+  }
+
+  .main-controls-container {
+    height: 82vh;
+    padding: 0;
+    width: 100%;
+  }
+
+  .fx-container {
+    padding-block: var(--spacing-small);
+  }
+
+  .control-item:nth-child(3) {
+    order: 3;
+  }
+
+  .song-info-container {
+    flex-direction: column;
+    display: block;
+    margin: auto;
+    height: fit-content;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20vh;
+    background-color: var(--color-white);
+  }
+  .song-info-container p {
+    display: none;
+  }
+
+  .slider-section {
+    margin: 0;
+  }
+  .slider {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    width: 100%; /* Full width on mobile */
+    height: auto; /* Adjust height */
+    position: relative;
+    overflow: hidden;
+    border: none;
+    margin: 0;
+    /* background-color: red; */
+  }
+
+  .slide {
+    position: relative;
+    width: 100%; /* Each grid item takes full width of its column */
+    aspect-ratio: 1/1;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  .slider__btn {
+    display: none; /* Hide navigation buttons on mobile */
+  }
+
+  .dots {
+    display: none; /* Hide dots on mobile */
+  }
 }

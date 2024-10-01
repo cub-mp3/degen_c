@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="./src/song-player.css" />
   </head>
   <body>
+    <button class="toggle-audio-button button" onclick="toggleAudio()"></button>
     <div class="audio-section">
       <div class="audio-controls-container">
-        <div class="fx-container margin-small">
+        <div class="fx-container margin-small control-item">
           <label for="panner-control">pan</label>
           <input
             type="range"
@@ -42,7 +43,7 @@
 
           <button id="reset-fx" class="button">reset</button>
         </div>
-        <div class="main-controls-container margin-block-small">
+        <div class="main-controls-container margin-block-small control-item">
           <div class="album-cover"></div>
           <div class="main-controls">
             <audio id="audioElement" preload="auto" controls></audio>
@@ -52,7 +53,7 @@
             </div>
           </div>
         </div>
-        <div class="filter-container margin-small">
+        <div class="filter-container margin-small control-item">
           <p>high pass</p>
           <input
             type="range"
