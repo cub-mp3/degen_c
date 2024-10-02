@@ -24,8 +24,6 @@ body {
   /* height: 100vh; */
   margin: 0;
   background-color: var(--color-grey);
-  background-color: red;
-
   font-size: 16px;
 }
 html {
@@ -75,10 +73,14 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: var(--border-style);
+  border-bottom: var(--border-style);
   width: 100%;
   box-sizing: border-box;
   overflow: auto;
+}
+
+.toggle-audio-button {
+  display: none;
 }
 
 .songs-container {
@@ -95,9 +97,9 @@ a {
   background-color: var(--color-white);
   display: grid;
   grid-template-columns: 25% 50% 25%;
-  border: var(--border-style);
-  width: 80%;
-  min-width: 70rem;
+  border-bottom: var(--border-style);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .fx-container {
@@ -118,6 +120,7 @@ a {
   align-items: center;
   gap: var(--spacing-small);
   padding: var(--spacing-medium);
+
   border: none;
 }
 
@@ -303,8 +306,13 @@ a {
     border: none;
   }
   .toggle-audio-button {
-    display: block;
-    position: absolute;
+    position: fixed;
+    font-size: var(--font-size-large);
+    text-align: center;
+    line-height: 20px;
+    padding: 0;
+    height: var(--spacing-medium);
+    aspect-ratio: 1/1;
     top: 0;
     right: 0;
     z-index: 2;
@@ -351,6 +359,9 @@ a {
     width: 100%;
     height: 20vh;
     background-color: var(--color-white);
+    margin: 0;
+    border: none;
+    box-sizing: border-box;
   }
   .song-info-container p {
     display: none;

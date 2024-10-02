@@ -86,15 +86,18 @@ const skipButton = document.querySelector(".skip-button");
 const prevButton = document.querySelector(".prev-button");
 const mainControls = document.querySelector(".main-controls");
 
+const sliderSection = document.querySelector(".slider-section");
+
 const slider = document.querySelector(".slider");
 
 const btnLeft = document.querySelector(".slider__btn--left");
 
 const btnRight = document.querySelector(".slider__btn--right");
+const audioToggle = document.querySelector(".toggle-audio-button");
 
 let songIndex;
 
-let playerDisplay;
+let playerDisplay = false;
 
 //play songs
 
@@ -104,8 +107,6 @@ function isPhoneSize() {
   // console.log(window.innerWidth);
   return window.innerWidth <= 480;
 }
-
-console.log(isPhoneSize());
 
 function setupSongs() {
   songItems = document.querySelectorAll(".song-item");
@@ -130,9 +131,9 @@ function setupSongs() {
     item.addEventListener("click", () => {
       playSong(i);
       if (isPhoneSize()) {
-        console.log("block");
         audioSection.style.display = "block";
-        playerDisplay = true;
+        console.log(playerDisplay);
+        toggleAudio();
       }
     });
   });
@@ -141,7 +142,6 @@ setupSongs();
 
 function playSong(index) {
   const song = songs[index];
-  console.log(song);
   // console.log(song);
   const songSrc = song.src;
   audioElement.src = songSrc;
@@ -149,6 +149,7 @@ function playSong(index) {
   audioElement.play();
   if (isPhoneSize()) {
     audioControls.style.display = "flex";
+    audioToggle.style.display = "block";
   } else {
     audioControls.style.display = "grid";
   }
@@ -189,7 +190,6 @@ function setupSlider() {
   if (!isPhoneSize()) {
     let curSlide = 0;
 
-    console.log("not phone size");
     const slides = document.querySelectorAll(".slide");
     const maxLength = slides.length;
 
@@ -199,7 +199,6 @@ function setupSlider() {
         curSlide = 0;
       } else {
         curSlide += 1;
-        console.log(curSlide);
       }
 
       slides.forEach(
@@ -365,7 +364,6 @@ resetFxButton.addEventListener("click", function () {
 });
 
 window.addEventListener("resize", () => {
-  console.log("resize");
   setupSongs();
 
   setupSlider();
@@ -373,19 +371,23 @@ window.addEventListener("resize", () => {
 
 //audio toggle button
 
-const audioToggle = document.querySelector(".audio-toggle-button");
-
 function toggleAudio() {
   if (playerDisplay) {
-    console.log("audio controls");
-    audioControls.style.display = "none";
-    audioSection.style.position = "relative";
+    console.log("grid");
+    audioControls.style.display = "none"; // Hide audio controls
+    audioSection.style.position = "relative"; // Reset position
+    audioToggle.style.transform = "rotate(180deg)"; // Rotate button
+    sliderSection.style.display = "block";
+
     playerDisplay = false;
-    console.log(playerDisplay);
   } else {
+    console.log("show song");
     playerDisplay = true;
-    console.log(playerDisplay);
-    audioControls.style.display = "flex";
+    audioControls.style.display = "flex"; // Show audio controls
+    audioSection.style.position = "absolute"; // Set to absolute
+    audioSection.style.display = "block"; // Ensure section is visible
+    audioToggle.style.transform = "rotate(0deg)"; // Reset rotation
+    sliderSection.style.display = "none";
   }
 }
 
