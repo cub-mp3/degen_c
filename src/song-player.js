@@ -68,6 +68,38 @@ const songs = [
     key: "E Minor",
     release: "09.09.24",
   },
+  {
+    id: "placeholder",
+    src: source6,
+    name: "placeholder",
+    tempo: "120 BPM",
+    key: "C",
+    release: "01.01.01",
+  },
+  {
+    id: "placeholder",
+    src: source6,
+    name: "placeholder",
+    tempo: "120 BPM",
+    key: "C",
+    release: "01.01.01",
+  },
+  {
+    id: "placeholder",
+    src: source6,
+    name: "placeholder",
+    tempo: "120 BPM",
+    key: "C",
+    release: "01.01.01",
+  },
+  {
+    id: "placeholder",
+    src: source6,
+    name: "placeholder",
+    tempo: "120 BPM",
+    key: "C",
+    release: "01.01.01",
+  },
 ];
 
 const audioSection = document.querySelector(".audio-section");
@@ -117,9 +149,12 @@ function setupSongs() {
     songItem.classList.add("song-item", "slide");
     slider.appendChild(songItem);
     // const songCover = song.cover;
-    songItem.style.backgroundImage = `url('${song.cover}')`;
-
-    songItem.style.backgroundSize = "contain";
+    if (song.cover) {
+      songItem.style.backgroundImage = `url('${song.cover}')`;
+      songItem.style.backgroundSize = "contain";
+    } else {
+      songItem.classList.add("placeholder-song");
+    }
 
     if (!isPhoneSize()) {
       songItem.style.transform = `translateX(${i * 100}%)`;
@@ -371,24 +406,42 @@ window.addEventListener("resize", () => {
 
 //audio toggle button
 
-function toggleAudio() {
-  if (playerDisplay) {
-    console.log("grid");
-    audioControls.style.display = "none"; // Hide audio controls
-    audioSection.style.position = "relative"; // Reset position
-    audioToggle.style.transform = "rotate(180deg)"; // Rotate button
-    sliderSection.style.display = "block";
+// function toggleAudio() {
+//   if (playerDisplay) {
+//     console.log("grid");
+//     audioControls.style.display = "none"; // Hide audio controls
+//     audioSection.style.position = "relative"; // Reset position
+//     audioToggle.style.transform = "rotate(180deg)"; // Rotate button
+//     sliderSection.style.display = "block";
 
-    playerDisplay = false;
-  } else {
-    console.log("show song");
-    playerDisplay = true;
-    audioControls.style.display = "flex"; // Show audio controls
-    audioSection.style.position = "absolute"; // Set to absolute
-    audioSection.style.display = "block"; // Ensure section is visible
-    audioToggle.style.transform = "rotate(0deg)"; // Reset rotation
-    sliderSection.style.display = "none";
-  }
-}
+//     playerDisplay = false;
+//   } else {
+//     console.log("show song");
+//     playerDisplay = true;
+//     audioControls.style.display = "flex"; // Show audio controls
+//     audioSection.style.position = "absolute"; // Set to absolute
+//     audioSection.style.display = "block"; // Ensure section is visible
+//     audioToggle.style.transform = "rotate(0deg)"; // Reset rotation
+//     sliderSection.style.display = "none";
+//   }
+// }
 
 window.toggleAudio = toggleAudio;
+
+function toggleAudio() {
+  playerDisplay = !playerDisplay;
+  const display = playerDisplay ? "flex" : "none";
+  const position = playerDisplay ? "absolute" : "relative";
+  const sliderDisplay = playerDisplay ? "none" : "block";
+  const rotate = playerDisplay ? "rotate(0deg)" : "rotate(180deg)";
+
+  audioControls.style.display = display;
+  audioSection.style.position = position;
+  audioToggle.style.transform = rotate;
+  sliderSection.style.display = sliderDisplay;
+}
+import eye from "../imgs/eye.svg";
+
+const emptySpace = document.querySelector(".empty-space");
+
+// emptySpace.style.backgroundImage = `url("${eye}")`;

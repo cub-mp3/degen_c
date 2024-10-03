@@ -391,11 +391,40 @@ a {
     padding: 0;
   }
 
+  .placeholder-song {
+    background-color: rgb(255, 255, 255);
+    border: var(--border-style);
+    box-sizing: border-box;
+  }
+
   .slider__btn {
     display: none; /* Hide navigation buttons on mobile */
   }
 
   .dots {
     display: none; /* Hide dots on mobile */
+  }
+
+  .empty-space {
+    display: flex;
+    background-color: black;
+    padding-top: 20rem;
+
+    height: 100vh;
+  }
+
+  .eyes {
+    border: 1px solid white;
+    width: 50%;
+    background-image: url("../imgs/eye.svg");
+    background-repeat: no-repeat;
+    background-position: 40% 80%;
+    height: 100vw;
+    background-size: 200%;
+  }
+
+  .right-eye {
+    transform: translateZ(180deg);
+    transform: scaleX(-1);
   }
 }
