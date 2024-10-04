@@ -440,8 +440,102 @@ function toggleAudio() {
   audioToggle.style.transform = rotate;
   sliderSection.style.display = sliderDisplay;
 }
+
 import eye from "../imgs/eye.svg";
+import { intersection } from "lodash-es";
 
+const spaceContainer = document.querySelector(".space-container");
 const emptySpace = document.querySelector(".empty-space");
+const eyeElements = document.querySelectorAll(".eyes");
 
-// emptySpace.style.backgroundImage = `url("${eye}")`;
+console.log(eyeElements);
+
+fetch(eye)
+  .then((response) => {
+    return response.text();
+  })
+  .then((svgText) => {
+    eyeElements.forEach((e) => {
+      e.innerHTML = svgText;
+      const eyelid = e.querySelector(".eyelid");
+      const pupil = e.querySelector(".pupil");
+      // let counter = 0;
+
+      // const flickerEyes = setInterval(() => {
+      //   toggleEyes(eyelid, "rgb(0, 0, 0)", "rgb(255, 255, 255)");
+      //   toggleEyes(pupil, "rgb(0, 0, 0)", "rgb(255, 255, 255)");
+      //   counter++;
+      //   if (counter >= 2) {
+      //     clearInterval(flickerEyes);
+      //     // console.clear();
+      //   }
+      // }, 500);
+    });
+  });
+
+// function toggleEyes(element, color1, color2) {
+//   const currentColor = element.style.fill || element.getAttribute("fill");
+//   console.log(`current color ${currentColor}`);
+//   newColor = currentColor === color1 ? color2 : color1;
+//   console.log(newColor);
+//   element.style.fill = newColor;
+// }
+// function triggerFace() {
+//   return new Promise((resolve) => {
+//     setTimeout(() => {
+//       emptySpace.style.display = "flex";
+//       resolve();
+//     }, 1000);
+//   }).then(() => {
+//     return new Promise((resolve) => {
+//       setTimeout(() => {
+//         emptySpace.style.display = "none";
+//         resolve();
+//       }, 500);
+//     });
+//   });
+// }
+// function triggerFace() {
+//   setTimeout(() => {
+//     emptySpace.style.display = "flex";
+//     setTimeout(() => {
+//       emptySpace.style.display = "none";
+//     }, 500);
+//   }, 1000);
+// }
+
+// i need this
+
+let eyesVisible = false;
+
+function flickerFace() {
+  let counter = 0;
+
+  console.log("triggering flicker face");
+  const flickerFaceInterval = setInterval(() => {
+    emptySpace.style.display = eyesVisible ? "none" : "flex";
+    eyesVisible = !eyesVisible;
+    console.log(eyesVisible);
+    counter++;
+    if (counter >= 4) {
+      clearInterval(flickerFaceInterval);
+      // console.clear();
+    }
+  }, 500);
+}
+
+// if (isPhoneSize) {
+//   flickerFace();
+// }
+
+const observer = new IntersectionObserver((entries) =>
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      console.log("intersection");
+      flickerFace();
+      // observer.unobserve(entry.target);
+    }
+  })
+);
+
+observer.observe(spaceContainer);

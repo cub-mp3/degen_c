@@ -369,6 +369,9 @@ a {
 
   .slider-section {
     margin: 0;
+    border: none;
+    box-sizing: border-box;
+    height: fit-content;
   }
   .slider {
     display: grid;
@@ -405,26 +408,34 @@ a {
     display: none; /* Hide dots on mobile */
   }
 
-  .empty-space {
-    display: flex;
-    background-color: black;
-    padding-top: 20rem;
+  .space-container {
+    width: 100%;
+    background-color: rgb(0, 0, 0);
+    padding-block: 10rem;
+    /* border: 1px solid rgb(0, 0, 0); */
+    box-sizing: border-box;
+    height: 60vh;
+  }
 
-    height: 100vh;
+  .empty-space {
+    display: none;
+    background-color: black;
+    margin: 0;
+    width: 100vw;
+
+    height: fit-content;
   }
 
   .eyes {
-    border: 1px solid white;
+    /* border: 1px solid white; */
     width: 50%;
-    background-image: url("../imgs/eye.svg");
     background-repeat: no-repeat;
-    background-position: 40% 80%;
-    height: 100vw;
-    background-size: 200%;
+    background-position: center;
+    background-size: 100%;
   }
 
   .right-eye {
-    transform: translateZ(180deg);
+    /* transform: translateZ(180deg); */
     transform: scaleX(-1);
   }
 }
