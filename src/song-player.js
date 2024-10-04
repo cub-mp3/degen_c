@@ -450,29 +450,6 @@ const eyeElements = document.querySelectorAll(".eyes");
 
 console.log(eyeElements);
 
-fetch(eye)
-  .then((response) => {
-    return response.text();
-  })
-  .then((svgText) => {
-    eyeElements.forEach((e) => {
-      e.innerHTML = svgText;
-      const eyelid = e.querySelector(".eyelid");
-      const pupil = e.querySelector(".pupil");
-      // let counter = 0;
-
-      // const flickerEyes = setInterval(() => {
-      //   toggleEyes(eyelid, "rgb(0, 0, 0)", "rgb(255, 255, 255)");
-      //   toggleEyes(pupil, "rgb(0, 0, 0)", "rgb(255, 255, 255)");
-      //   counter++;
-      //   if (counter >= 2) {
-      //     clearInterval(flickerEyes);
-      //     // console.clear();
-      //   }
-      // }, 500);
-    });
-  });
-
 // function toggleEyes(element, color1, color2) {
 //   const currentColor = element.style.fill || element.getAttribute("fill");
 //   console.log(`current color ${currentColor}`);
@@ -524,18 +501,43 @@ function flickerFace() {
   }, 500);
 }
 
-// if (isPhoneSize) {
-//   flickerFace();
-// }
+if (isPhoneSize) {
+  fetch(eye)
+    .then((response) => {
+      return response.text();
+    })
+    .then((svgText) => {
+      eyeElements.forEach((e) => {
+        e.innerHTML = svgText;
+        const eyelid = e.querySelector(".eyelid");
+        const pupil = e.querySelector(".pupil");
+        // let counter = 0;
 
-const observer = new IntersectionObserver((entries) =>
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      console.log("intersection");
-      flickerFace();
-      // observer.unobserve(entry.target);
-    }
-  })
-);
+        // const flickerEyes = setInterval(() => {
+        //   toggleEyes(eyelid, "rgb(0, 0, 0)", "rgb(255, 255, 255)");
+        //   toggleEyes(pupil, "rgb(0, 0, 0)", "rgb(255, 255, 255)");
+        //   counter++;
+        //   if (counter >= 2) {
+        //     clearInterval(flickerEyes);
+        //     // console.clear();
+        //   }
+        // }, 500);
+      });
+    });
 
-observer.observe(spaceContainer);
+  const observer = new IntersectionObserver((entries) =>
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        console.log("intersection");
+        flickerFace();
+        // observer.unobserve(entry.target);
+      }
+    })
+  );
+
+  observer.observe(spaceContainer);
+}
+
+if (!isPhoneSize) {
+  spaceContainer.style.display = "none";
+}

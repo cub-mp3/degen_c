@@ -13,6 +13,7 @@
   --color-grey: #f0f0f0;
   --color-black: #000000;
   --color-white: #ffffff;
+  --color-pink: #ff69b4;
 }
 
 :root {
@@ -25,6 +26,7 @@ body {
   margin: 0;
   background-color: var(--color-grey);
   font-size: 16px;
+  color: var(--color-black);
 }
 html {
   font-size: 62.5%; /* 62.5% of 16px = 10px */
@@ -47,12 +49,72 @@ a {
   color: var(--color-black);
 }
 
+/* input bs  */
+
+input[type="range"] {
+  -webkit-appearance: none; /* For Safari */
+  appearance: none; /* For other browsers */
+  width: 100%; /* Full width */
+  height: 20px; /* Wider track height */
+  background: transparent; /* Hide default track */
+  cursor: pointer; /* Pointer cursor */
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  background: var(--color-grey); /* Track color */
+  height: 20px; /* Wider track height */
+  border-radius: 10px; /* Round track */
+}
+
+input[type="range"]::-moz-range-track {
+  background: var(--color-grey); /* Track color */
+  height: 20px; /* Wider track height */
+  border-radius: 10px; /* Round track */
+}
+
+input[type="range"]::-ms-track {
+  background: var(--color-grey); /* Track color */
+  height: 20px; /* Wider track height */
+  border-radius: 10px; /* Round track */
+  color: transparent; /* Hide default track */
+  border: none; /* Remove border */
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* For Safari */
+  appearance: none; /* For other browsers */
+  width: 20px; /* Thumb width */
+  height: 20px; /* Thumb height */
+  background: var(--color-pink); /* Thumb color */
+  border-radius: 50%; /* Round thumb */
+  cursor: pointer; /* Pointer cursor */
+  position: relative;
+  z-index: 2; /* Ensure the thumb is above the fill */
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px; /* Thumb width */
+  height: 20px; /* Thumb height */
+  background: var(--color-pink); /* Thumb color */
+  border-radius: 50%; /* Round thumb */
+  cursor: pointer; /* Pointer cursor */
+}
+
+input[type="range"]::-ms-thumb {
+  width: 20px; /* Thumb width */
+  height: 20px; /* Thumb height */
+  background: var(--color-pink); /* Thumb color */
+  border-radius: 50%; /* Round thumb */
+  cursor: pointer; /* Pointer cursor */
+}
+
 .button {
   background-color: var(--color-grey);
   padding: var(--spacing-small);
   transition: 0.2s all ease;
   text-decoration: none;
   border: none;
+  color: var(--color-black);
 }
 
 .button:hover {
@@ -171,6 +233,7 @@ a {
   box-sizing: content-box;
   padding-inline: var(--spacing-small);
   box-sizing: border-box;
+  z-index: 2;
 }
 
 #song-download {
@@ -178,10 +241,12 @@ a {
 }
 
 #filter {
-  writing-mode: bt-lr; /* IE */
+  /* writing-mode: bt-lr; 
   writing-mode: vertical-lr;
-  direction: rtl;
-  height: 30%; /* Full height of the container */
+  direction: rtl; */
+  width: 140%; /* Full height of the container */
+  transform: rotate(90deg);
+  margin-block: calc(var(--spacing-large) * 3);
 }
 
 /* SLIDER */
@@ -437,5 +502,12 @@ a {
   .right-eye {
     /* transform: translateZ(180deg); */
     transform: scaleX(-1);
+  }
+
+  .filter-container {
+    padding-bottom: 10rem;
+  }
+  #filter {
+    width: 60%;
   }
 }
