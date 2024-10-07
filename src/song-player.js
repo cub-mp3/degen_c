@@ -137,7 +137,7 @@ let songItems;
 
 function isPhoneSize() {
   // console.log(window.innerWidth);
-  return window.innerWidth <= 480;
+  return window.innerWidth <= 767;
 }
 
 function setupSongs() {

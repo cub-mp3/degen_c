@@ -172,6 +172,7 @@ input[type="range"]::-ms-thumb {
   gap: var(--spacing-small);
   justify-content: center;
   align-items: center;
+  padding: var(--spacing-small);
 }
 
 .main-controls-container {
@@ -236,6 +237,10 @@ input[type="range"]::-ms-thumb {
   z-index: 2;
 }
 
+.space-container {
+  display: none;
+}
+
 #song-download {
   display: none;
 }
@@ -245,7 +250,8 @@ input[type="range"]::-ms-thumb {
   writing-mode: vertical-lr;
   direction: rtl; */
   width: 140%; /* Full height of the container */
-  transform: rotate(90deg);
+  max-width: 20rem;
+  transform: rotate(-90deg);
   margin-block: calc(var(--spacing-large) * 3);
 }
 
@@ -357,7 +363,7 @@ input[type="range"]::-ms-thumb {
 
 /* phone */
 
-@media (max-width: 480px) {
+@media (max-width: 767px) {
   .audio-section {
     margin: 0;
     box-sizing: border-box;
@@ -475,6 +481,7 @@ input[type="range"]::-ms-thumb {
 
   .space-container {
     width: 100%;
+    display: block;
     background-color: rgb(0, 0, 0);
     padding-block: 10rem;
     /* border: 1px solid rgb(0, 0, 0); */
