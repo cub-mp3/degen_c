@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movable Divs</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #ff7070;
+      }
+
+      .movable-div {
+        width: 100px;
+        height: 100px;
+        background-color: #3498db;
+        position: absolute;
+        border-radius: 10px;
+        cursor: grab;
+      }
+
+      .movable-div:active {
+        cursor: grabbing;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="movable-div" id="div1"></div>
+    <div class="movable-div" id="div2" style="top: 150px; left: 150px"></div>
+
+    <script>
+      const divs = document.querySelectorAll(".movable-div");
+
+      divs.forEach((div) => {
+        const savedPosition = localStorage.getItem(div.id);
+
+        // console.log(savedPosition);
+
+        if (savedPosition) {
+          console.log("there is a saved position");
+          const [left, top] = savedPosition.split(",").map(Number);
+          // console.log(left, top);
+
+          div.style.left = `${left}px`;
+          div.style.top = `${top}px`;
+        }
+
+        let isDragging = false;
+        let offsetX = 0;
+        let offsetY = 0;
+
+        div.addEventListener("mousedown", (e) => {
+          isDragging = true;
+          offsetX = e.clientX - div.getBoundingClientRect().left;
+          offsetY = e.clientY - div.getBoundingClientRect().top;
+          console.log(offsetX);
+        });
+
+        document.addEventListener("mousemove", (e) => {
+          if (isDragging) {
+            div.style.left = `${e.clientX - offsetX}px`;
+            div.style.top = `${e.clientY - offsetY}px`;
+          }
+        });
+
+        document.addEventListener("mouseup", (e) => {
+          isDragging = false;
+          const left = div.style.left;
+          const top = div.style.top;
+          localStorage.setItem(div.id, `${parseInt(left)}, ${parseInt(top)}`);
+        });
+      });
+
+      console.log(parseInt(4));
+    </script>
+  </body>
+</html>

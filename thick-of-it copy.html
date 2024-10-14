@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thick of It Meme Coin</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap");
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+        margin: 0;
+        font-family: "Orbitron", sans-serif;
+      }
+
+      .main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .main h1 {
+        text-align: center;
+        color: #333;
+        font-size: 2rem;
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .main h1::before,
+      .main h1::after {
+        content: "↑";
+        font-size: 2.5rem;
+        color: #ff0000;
+        animation: bounce 1s infinite alternate;
+      }
+
+      @keyframes bounce {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(-10px);
+        }
+      }
+
+      video {
+        max-width: 100%;
+        max-height: 100%;
+        transition: filter 0.1s; /* Smooth transition for distortion */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <video id="thickOfItVideo" autoplay loop>
+        <source src="videos/thick-of-it.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <h1>Click on the video to increase quality</h1>
+    </div>
+
+    <script>
+      const video = document.getElementById("thickOfItVideo");
+      video.playbackRate = 1;
+
+      const audioContext = new (window.AudioContext ||
+        window.webkitAudioContext)();
+      const source = audioContext.createMediaElementSource(video);
+
+      const distortion = audioContext.createWaveShaper();
+
+      function makeDistortionCurve(amount) {
+        const n_samples = 44100;
+        const curve = new Float32Array(n_samples);
+        const deg = Math.PI / 180;
+        for (let i = 0; i < n_samples; ++i) {
+          const x = (i * 2) / n_samples - 1;
+          curve[i] =
+            ((3 + amount) * x * 20 * deg) / (Math.PI + amount * Math.abs(x));
+        }
+        return curve;
+      }
+
+      distortion.curve = makeDistortionCurve(0);
+      distortion.oversample = "4x";
+      source.connect(distortion);
+      distortion.connect(audioContext.destination);
+
+      let clickCount = 0;
+
+      video.addEventListener("click", function () {
+        clickCount++;
+        console.log(clickCount);
+
+        const distortionAmount = clickCount * 10;
+        video.playbackRate += 0.01;
+
+        distortion.curve = makeDistortionCurve(distortionAmount);
+      });
+    </script>
+  </body>
+</html>

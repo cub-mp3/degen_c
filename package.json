@@ -4,7 +4,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "start": "npm-run-all --parallel watch-css serve",
-    "serve": "  rm -rf .parcel-cache && rm -rf .dist && parcel song-player.html",
+    "serve": "  rm -rf .parcel-cache && rm -rf .dist && parcel thick-of-it.html",
     "build": "parcel build index.html",
     "build-css": "sass src/main.scss src/main.css",
     "watch-css": "sass --watch src/main.scss:src/main.css"

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thick of It Meme Coin</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap");
+
+      :root {
+        --main-bg-color: #333;
+        --main-text-color: #f0f0f0;
+        --highlight-color: #fe38b6;
+        --grid-bg-color: #333;
+        --grid-text-color: white;
+      }
+
+      h2 {
+        font-size: 16px;
+      }
+      body {
+        cursor: url("ksi/prime.png") 16 16, auto;
+
+        color: var(--main-text-color);
+        background-color: var(--main-text-color);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: var(--main-bg-color);
+        margin: 0;
+        font-family: "Comic Neue", sans-serif;
+      }
+
+      /* Section Styling */
+      .section {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 1200px;
+      }
+
+      .section h2 {
+        /* margin-bottom: 1.25rem; */
+        color: var(--main-text-color);
+      }
+
+      .main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+        padding-top: 0;
+        margin-top: 0;
+      }
+
+      .main h2 {
+        text-align: center;
+        color: var(--main-text-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.625rem;
+      }
+
+      .main h2::before,
+      .main h2::after {
+        content: "↑";
+        color: var(--highlight-color);
+        animation: bounce 1s infinite alternate;
+      }
+
+      @keyframes bounce {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(-0.625rem);
+        }
+      }
+
+      video {
+        margin: 0;
+        max-width: 100%;
+        max-height: 100%;
+        filter: blur(0px);
+        transition: filter 0.1s;
+      }
+
+      .spinny {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        height: 20em;
+      }
+
+      .spinny img {
+        width: 250%;
+        padding: 0;
+        /* margin-top: -12em; */
+      }
+
+      .grid-container {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 1.25rem;
+        /* width: calc(100% - 2.5rem); */
+      }
+
+      .grid-item {
+        max-width: 100%; /* Ensure grid items take max width */
+        background-color: var(--highlight-color);
+        color: var(--grid-text-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0.625rem;
+        aspect-ratio: 2;
+        overflow: hidden;
+      }
+
+      .grid-item .grid-item-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+      }
+
+      .grid-item:hover .grid-item-inner {
+        transform: rotateY(180deg);
+      }
+
+      .grid-item-front,
+      .grid-item-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .grid-item-back {
+        background-size: cover;
+        background-position: center;
+
+        transform: rotateY(180deg);
+      }
+
+      /* New Ice Section */
+      .ice-section {
+        margin-top: 4rem;
+        text-align: center;
+        background-color: var(--main-bg-color);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .ice-section h2,
+      .ice-section h2 {
+        color: var(--main-text-color);
+      }
+
+      .skeet {
+        width: 100%;
+        background-size: cover;
+        background-position: center;
+        background-image: url(ksi/skeet.png);
+        background-repeat: repeat;
+        height: 20em;
+      }
+
+      @media (min-width: 768px) {
+        .grid-container {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .main {
+          height: auto;
+        }
+
+        .spinny {
+          height: 30em;
+        }
+
+        .skeet {
+          height: auto;
+          aspect-ratio: 1;
+        }
+      }
+
+      .disclaimer {
+        font-size: x-small;
+        padding-top: 20em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="test"></div>
+    <h1>im in the thick of it everybody knows</h1>
+
+    <div class="main section">
+      <video id="thickOfItVideo" autoplay loop>
+        <source src="videos/thick-of-it.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <h2>Click on the video to increase quality</h2>
+      <div class="spinny">
+        <img src="ksi/3dgifmaker53230.gif" alt="" />
+      </div>
+    </div>
+
+    <!-- Claim to the Iron Throne Section -->
+    <div class="section crown">
+      <h2>claim to the crown</h2>
+      <div class="grid-container">
+        <div class="grid-item">
+          <div class="grid-item-inner">
+            <div class="grid-item-front">The Screen</div>
+            <div
+              class="grid-item-back"
+              style="background-image: url('ksi/the-screenl.avif')"
+            ></div>
+          </div>
+        </div>
+        <div class="grid-item">
+          <div class="grid-item-inner">
+            <div class="grid-item-front">The Ring</div>
+            <div
+              class="grid-item-back"
+              style="background-image: url('ksi/the-ring.webp')"
+            ></div>
+          </div>
+        </div>
+        <div class="grid-item">
+          <div class="grid-item-inner">
+            <div class="grid-item-front">The Pen</div>
+            <div
+              class="grid-item-back"
+              style="background-image: url('ksi/pen.jpg')"
+            ></div>
+          </div>
+        </div>
+        <div class="grid-item">
+          <div class="grid-item-inner">
+            <div class="grid-item-front">The King</div>
+            <div
+              class="grid-item-back"
+              style="background-image: url('ksi/the-king.avif')"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ice Section -->
+    <div class="ice-section section">
+      <h2>knowledge about ice</h2>
+      <div class="skeet"></div>
+      <h2>i don't know nothing bout no ice i'm just cold</h2>
+    </div>
+    <p class="disclaimer">
+      This project is not affiliated with or endorsed by KSI or any of his
+      associated brands. <br />
+      All images, videos, and trademarks related to KSI are the property of
+      their respective owners. <br />
+      This coin is intended for entertainment purposes only with no guarantees
+      regarding the future value or profitability of this coin
+    </p>
+    <script>
+      const video = document.getElementById("thickOfItVideo");
+      video.playbackRate = 1;
+
+      const audioContext = new (window.AudioContext ||
+        window.webkitAudioContext)();
+      const source = audioContext.createMediaElementSource(video);
+
+      const distortion = audioContext.createWaveShaper();
+
+      function makeDistortionCurve(amount) {
+        const n_samples = 44100;
+        const curve = new Float32Array(n_samples);
+        const deg = Math.PI / 180;
+        for (let i = 0; i < n_samples; ++i) {
+          const x = (i * 2) / n_samples - 1;
+          curve[i] =
+            ((3 + amount) * x * 20 * deg) / (Math.PI + amount * Math.abs(x));
+        }
+        return curve;
+      }
+
+      distortion.curve = makeDistortionCurve(0);
+      distortion.oversample = "4x";
+      source.connect(distortion);
+      distortion.connect(audioContext.destination);
+
+      let clickCount = 0;
+
+      video.addEventListener("click", function () {
+        clickCount++;
+        console.log(clickCount);
+
+        const distortionAmount = clickCount * 10;
+        video.playbackRate += 0.01;
+
+        distortion.curve = makeDistortionCurve(distortionAmount);
+      });
+
+      function rotationForClick() {
+        let deg = 1;
+        console.log(window.innerWidth);
+
+        document.querySelectorAll(".grid-item-inner").forEach((item) => {
+          item.addEventListener("click", () => {
+            item.style.transform = `rotateY(${180 * deg}deg)`;
+            deg++;
+            if (deg === 3) {
+              deg = 1;
+            }
+          });
+        });
+      }
+
+      if (window.innerWidth <= 768) {
+        rotationForClick();
+      }
+    </script>
+  </body>
+</html>
