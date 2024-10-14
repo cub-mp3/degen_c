@@ -212,7 +212,7 @@
     <h1>im in the thick of it everybody knows</h1>
 
     <div class="main section">
-      <video id="thickOfItVideo" autoplay loop>
+      <video id="thickOfItVideo" autoplay loop preload="auto">
         <source src="videos/thick-of-it.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
@@ -282,6 +282,10 @@
     <script>
       const video = document.getElementById("thickOfItVideo");
       video.playbackRate = 1;
+
+      window.addEventListener("load", () => {
+        video.play();
+      });
 
       const audioContext = new (window.AudioContext ||
         window.webkitAudioContext)();
