@@ -82,12 +82,63 @@
         }
       }
 
+      .main-video-container {
+        width: fit-content;
+        /* position: relative; */
+        /* aspect-ratio: 4 / 2.8; */
+        background-color: red;
+        height: fit-content;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
       video {
         margin: 0;
-        max-width: 100%;
-        max-height: 100%;
-        filter: blur(0px);
+        width: 100%;
+        height: auto;
         transition: filter 0.1s;
+        position: relative;
+        /* display: none; */
+        max-width: 1000px;
+      }
+
+      .loading-screen {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        /* opacity: 0.2; */
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+        z-index: 10; /* Ensure it's above the video */
+        box-sizing: border-box;
+      }
+
+      .loader {
+        border: 8px solid rgba(255, 255, 255, 0.3); /* Light border */
+        border-top: 8px solid var(--highlight-color);
+        border-radius: 50%;
+        width: 60px; /* Size of the loader */
+        height: 60px; /* Size of the loader */
+        animation: spin 1s linear infinite; /* Spin animation */
+        margin-bottom: 1rem; /* Space between loader and text */
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
       }
 
       .spinny {
@@ -177,7 +228,6 @@
         width: 100%;
         background-size: cover;
         background-position: center;
-        background-image: url(ksi/skeet.png);
         background-repeat: repeat;
         height: 20em;
       }
@@ -212,10 +262,15 @@
     <h1>im in the thick of it everybody knows</h1>
 
     <div class="main section">
-      <video id="thickOfItVideo" autoplay loop preload="auto">
-        <source src="videos/thick-of-it.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+      <div class="main-video-container">
+        <video id="thickOfItVideo" autoplay loop preload="auto">
+          <source src="videos/thick-of-it.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <div class="loading-screen">
+          <div class="loader"></div>
+        </div>
+      </div>
       <h2>Click on the video to increase quality</h2>
       <div class="spinny">
         <img src="ksi/3dgifmaker53230.gif" alt="" />
@@ -229,37 +284,25 @@
         <div class="grid-item">
           <div class="grid-item-inner">
             <div class="grid-item-front">The Screen</div>
-            <div
-              class="grid-item-back"
-              style="background-image: url('ksi/the-screenl.avif')"
-            ></div>
+            <div class="grid-item-back" data-bg="screenImg"></div>
           </div>
         </div>
         <div class="grid-item">
           <div class="grid-item-inner">
             <div class="grid-item-front">The Ring</div>
-            <div
-              class="grid-item-back"
-              style="background-image: url('ksi/the-ring.webp')"
-            ></div>
+            <div class="grid-item-back" data-bg="ringImg"></div>
           </div>
         </div>
         <div class="grid-item">
           <div class="grid-item-inner">
             <div class="grid-item-front">The Pen</div>
-            <div
-              class="grid-item-back"
-              style="background-image: url('ksi/pen.jpg')"
-            ></div>
+            <div class="grid-item-back" data-bg="penImg"></div>
           </div>
         </div>
         <div class="grid-item">
           <div class="grid-item-inner">
             <div class="grid-item-front">The King</div>
-            <div
-              class="grid-item-back"
-              style="background-image: url('ksi/the-king.avif')"
-            ></div>
+            <div class="grid-item-back" data-bg="kingImg"></div>
           </div>
         </div>
       </div>
@@ -268,7 +311,7 @@
     <!-- Ice Section -->
     <div class="ice-section section">
       <h2>knowledge about ice</h2>
-      <div class="skeet"></div>
+      <div class="skeet" data-bg="skeetImg"></div>
       <h2>i don't know nothing bout no ice i'm just cold</h2>
     </div>
     <p class="disclaimer">
@@ -279,67 +322,6 @@
       This coin is intended for entertainment purposes only with no guarantees
       regarding the future value or profitability of this coin
     </p>
-    <script>
-      const video = document.getElementById("thickOfItVideo");
-      video.playbackRate = 1;
-
-      window.addEventListener("load", () => {
-        video.play();
-      });
-
-      const audioContext = new (window.AudioContext ||
-        window.webkitAudioContext)();
-      const source = audioContext.createMediaElementSource(video);
-
-      const distortion = audioContext.createWaveShaper();
-
-      function makeDistortionCurve(amount) {
-        const n_samples = 44100;
-        const curve = new Float32Array(n_samples);
-        const deg = Math.PI / 180;
-        for (let i = 0; i < n_samples; ++i) {
-          const x = (i * 2) / n_samples - 1;
-          curve[i] =
-            ((3 + amount) * x * 20 * deg) / (Math.PI + amount * Math.abs(x));
-        }
-        return curve;
-      }
-
-      distortion.curve = makeDistortionCurve(0);
-      distortion.oversample = "4x";
-      source.connect(distortion);
-      distortion.connect(audioContext.destination);
-
-      let clickCount = 0;
-
-      video.addEventListener("click", function () {
-        clickCount++;
-        console.log(clickCount);
-
-        const distortionAmount = clickCount * 10;
-        video.playbackRate += 0.01;
-
-        distortion.curve = makeDistortionCurve(distortionAmount);
-      });
-
-      function rotationForClick() {
-        let deg = 1;
-        console.log(window.innerWidth);
-
-        document.querySelectorAll(".grid-item-inner").forEach((item) => {
-          item.addEventListener("click", () => {
-            item.style.transform = `rotateY(${180 * deg}deg)`;
-            deg++;
-            if (deg === 3) {
-              deg = 1;
-            }
-          });
-        });
-      }
-
-      if (window.innerWidth <= 768) {
-        rotationForClick();
-      }
-    </script>
+    <script type="module" src="./src/thick-of-it.js"></script>
   </body>
 </html>
