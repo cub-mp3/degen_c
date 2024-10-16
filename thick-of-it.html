@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Thick of It Meme Coin</title>
+    <link rel="icon" href="ksi/portrait.png" />
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap");
 
@@ -31,6 +32,7 @@
         background-color: var(--main-bg-color);
         margin: 0;
         font-family: "Comic Neue", sans-serif;
+        box-sizing: border-box;
       }
 
       /* Section Styling */
@@ -52,7 +54,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        height: 100vh;
         padding-top: 0;
         margin-top: 0;
       }
@@ -83,16 +84,46 @@
       }
 
       .main-video-container {
-        width: fit-content;
-        /* position: relative; */
-        /* aspect-ratio: 4 / 2.8; */
-        background-color: red;
-        height: fit-content;
+        position: relative; /* Important for absolute positioning of the loading screen */
+        width: 100%; /* Adjust as needed */
+        max-width: 1000px; /* Maximum width of the video */
+        height: 67vw; /* Set a height based on the video's aspect ratio (e.g., 16:9) */
+        max-height: calc(0.68 * 1000px);
+        background-color: rgb(0, 0, 0); /* Optional, for visual reference */
         margin: 0;
-        padding: 0;
         display: flex;
         justify-content: center;
         align-items: center;
+      }
+
+      video {
+        /* display: none; */
+        display: block;
+        width: auto;
+        height: 100%; /* Fill the container */
+        /* opacity: 0.1; */
+      }
+
+      .loading-screen {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.8
+        ); /* Semi-transparent background */
+        color: black; /* Color for the loader text */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+        z-index: 10; /* Ensure it's above the video */
+        box-sizing: border-box;
       }
 
       video {
@@ -100,7 +131,7 @@
         width: 100%;
         height: auto;
         transition: filter 0.1s;
-        position: relative;
+        position: block;
         /* display: none; */
         max-width: 1000px;
       }
@@ -184,6 +215,7 @@
         height: 100%;
         transition: transform 0.6s;
         transform-style: preserve-3d;
+        /* box-sizing: border-box; */
       }
 
       .grid-item:hover .grid-item-inner {
@@ -237,10 +269,6 @@
           grid-template-columns: repeat(2, 1fr);
         }
 
-        .main {
-          height: auto;
-        }
-
         .spinny {
           height: 30em;
         }
@@ -273,7 +301,7 @@
       </div>
       <h2>Click on the video to increase quality</h2>
       <div class="spinny">
-        <img src="ksi/3dgifmaker53230.gif" alt="" />
+        <img class="spinny-gif" data-bg="spinImg" alt="" />
       </div>
     </div>
 
