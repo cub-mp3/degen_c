@@ -33,10 +33,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
   video.load();
 
-  const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-  const source = audioContext.createMediaElementSource(video);
+  let audioContext;
 
-  const distortion = audioContext.createWaveShaper();
+  window.addEventListener("click", () => {
+    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const source = audioContext.createMediaElementSource(video);
+
+    const distortion = audioContext.createWaveShaper();
+
+    distortion.curve = makeDistortionCurve(0);
+    distortion.oversample = "4x";
+    source.connect(distortion);
+    distortion.connect(audioContext.destination);
+  });
 
   function makeDistortionCurve(amount) {
     const n_samples = 44100;
@@ -49,11 +58,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     return curve;
   }
-
-  distortion.curve = makeDistortionCurve(0);
-  distortion.oversample = "4x";
-  source.connect(distortion);
-  distortion.connect(audioContext.destination);
 
   let clickCount = 0;
 
@@ -107,10 +111,19 @@ document.addEventListener("DOMContentLoaded", function () {
         if (entry.isIntersecting) {
           //   console.log(entry.target);
           const imgElement = entry.target;
+          console.log(imgElement);
           const backgroundImage = imgElement.getAttribute("data-bg");
+          const imgSrc = images[backgroundImage];
+
           //   console.log(backgroundImage);
-          const imgSrc = `url(${images[backgroundImage]})`;
-          imgElement.style.backgroundImage = imgSrc;
+
+          if (!imgElement.classList.contains("spinny-gif")) {
+            imgElement.style.backgroundImage = `url(${imgSrc})`;
+          } else {
+            console.log("yes");
+            // console.log(src);
+            imgElement.src = imgSrc;
+          }
           // imgElement.style.backgroundColor = `black`;
 
           observer.unobserve(imgElement);
@@ -120,13 +133,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     lazyLoad.forEach((image) => {
       observer.observe(image);
-      if (image.className === "spinny-gif") {
-        console.log("yes");
-        const srcKey = image.getAttribute("data-bg");
-        const src = `${images[srcKey]}`;
-        console.log(src);
-        image.src = src;
-      }
     });
   }
 
