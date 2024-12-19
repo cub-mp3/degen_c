@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .svg-container {
+        width: 400px;
+        height: 400px;
+        position: relative;
+      }
+
+      .svg-overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        border: 1px solid black;
+      }
+
+      .buttons {
+        display: flex;
+        gap: 2em;
+      }
+
+      .button {
+        background-color: red;
+        width: 2em;
+        height: 2em;
+      }
+
+      .mouth {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+
+        z-index: 2;
+        border: 2px solid blue; /* For debugging the shape */
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="buttons">
+      <div class="button-1 button"></div>
+      <div class="button-2 button"></div>
+      <div class="button-3 button"></div>
+    </div>
+    <div class="container">
+      <div class="svg-container">
+        <img src="imgs/face-nft.svg" class="svg-overlay svg1" alt="SVG 1" />
+        <!-- <img
+          src="imgs/face-nft-mouth-3.svg"
+          class="svg-overlay svg2"
+          alt="SVG 2"
+        /> -->
+      </div>
+    </div>
+  </body>
+  <script src="./src/face-nft-test.js" type="module"></script>
+</html>
