@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hello world</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      .tier-list-section {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        width: 100%;
+      }
+
+      .container {
+        border: 1px solid rgb(0, 0, 0);
+        display: flex;
+        flex-direction: column;
+        padding: 1em;
+        margin-bottom: 2em;
+        flex: 1;
+      }
+
+      .song-container {
+        border: 1px solid red;
+        /* height: 100%; */
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px; /* Optional: adds space between the grid items */
+        min-height: 4em;
+      }
+
+      .song {
+        aspect-ratio: 1; /* Keeps the items square */
+        background-size: cover;
+        border: 1px solid black;
+      }
+
+      .tier-list-row {
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: row;
+        background-color: rgb(209, 209, 209);
+        border-top: 1px solid black;
+        border-inline: 1px solid black;
+        flex-wrap: wrap;
+      }
+
+      .tier-list-row:last-child {
+        border-bottom: 1px solid black;
+      }
+
+      .tier-box {
+        /* background-color: red; */
+        width: 20%;
+        aspect-ratio: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .s-tier {
+        background-color: #f47b7d;
+      }
+      .a-tier {
+        background-color: #ffe089;
+      }
+      .b-tier {
+        background-color: #fdfe7c;
+      }
+      .c-tier {
+        background-color: #9ff15a;
+      }
+      .d-tier {
+        background-color: #4bdef1;
+      }
+      .e-tier {
+        background-color: #18a6d6;
+      }
+      .f-tier {
+        background-color: #cb8cf8;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="tier-list-section">
+      <div class="container tier-list-board">
+        <div class="tier-list-row"><div class="tier-box s-tier">s</div></div>
+        <div class="tier-list-row"><div class="tier-box a-tier">a</div></div>
+        <div class="tier-list-row"><div class="tier-box b-tier">b</div></div>
+        <div class="tier-list-row"><div class="tier-box c-tier">c</div></div>
+        <div class="tier-list-row">
+          <div class="tier-box d-tier">d</div>
+        </div>
+        <div class="tier-list-row"><div class="tier-box e-tier">e</div></div>
+        <div class="tier-list-row"><div class="tier-box f-tier">f</div></div>
+      </div>
+
+      <div class="container">
+        <div class="song-container">
+          <!-- <div class="song"></div>
+          <div class="song"></div>
+          <div class="song"></div>
+          <div class="song"></div> -->
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="./src/tier-list.js" type="module"></script>
+</html>
