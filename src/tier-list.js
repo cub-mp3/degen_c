@@ -175,12 +175,10 @@ let popup;
 
 function fPopup() {
   createPopup();
-  popup.style.width = "14em";
   popup.src = [sus1, sus2, sus3, sus4][Math.floor(Math.random() * 4)];
 }
 function sPopup() {
   createPopup();
-  popup.style.width = "20em";
   popup.src = socialCredit;
 }
 
@@ -193,6 +191,8 @@ function createPopup() {
   popup.classList.add("popup");
   popupSection.appendChild(popup);
   popupFadeOut(popup);
+  popup.style.height = "100%";
+
   return popup;
 }
 
