@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>hello world</title>
     <style>
+      body {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+      }
       * {
         box-sizing: border-box;
       }
@@ -24,7 +29,7 @@
         flex: 1;
       }
 
-      .song-container {
+      .song-grid {
         border: 1px solid red;
         /* height: 100%; */
         display: grid;
@@ -83,13 +88,27 @@
       .f-tier {
         background-color: #cb8cf8;
       }
+
+      .popup-section {
+        border: 1px solid red;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+      /* .popup-test {
+        background-color: black;
+        height: 10em;
+        aspect-ratio: 1;
+      } */
     </style>
   </head>
 
   <body>
     <div class="tier-list-section">
       <div class="container tier-list-board">
-        <div class="tier-list-row"><div class="tier-box s-tier">s</div></div>
+        <div class="tier-list-row s-tier-row">
+          <div class="tier-box s-tier">s</div>
+        </div>
         <div class="tier-list-row"><div class="tier-box a-tier">a</div></div>
         <div class="tier-list-row"><div class="tier-box b-tier">b</div></div>
         <div class="tier-list-row"><div class="tier-box c-tier">c</div></div>
@@ -97,17 +116,22 @@
           <div class="tier-box d-tier">d</div>
         </div>
         <div class="tier-list-row"><div class="tier-box e-tier">e</div></div>
-        <div class="tier-list-row"><div class="tier-box f-tier">f</div></div>
+        <div class="tier-list-row f-tier-row">
+          <div class="tier-box f-tier">f</div>
+        </div>
       </div>
 
-      <div class="container">
-        <div class="song-container">
+      <div class="song-container container">
+        <div class="song-grid">
           <!-- <div class="song"></div>
           <div class="song"></div>
           <div class="song"></div>
           <div class="song"></div> -->
         </div>
       </div>
+    </div>
+    <div class="popup-section">
+      <!-- <div class="popup-test"></div> -->
     </div>
   </body>
   <script src="./src/tier-list.js" type="module"></script>

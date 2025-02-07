@@ -13,6 +13,13 @@ import source4 from "./songs-for-website/songs/the-wheel-of-fortune-1.wav";
 import source5 from "./songs-for-website/songs/the-wheel-of-fortune-2.wav";
 import source6 from "./songs-for-website/songs/head-in-the-clouds.wav"; // Assuming you want to include this for the last song
 
+import sus1 from "../imgs/sus1.webp";
+import sus2 from "../imgs/sus2.webp";
+import sus3 from "../imgs/sus3.webp";
+import sus4 from "../imgs/sus4.webp";
+
+import socialCredit from "../imgs/social-credit.webp";
+
 const songs = [
   {
     id: "time-2",
@@ -102,7 +109,9 @@ const songs = [
   },
 ];
 
-const songContainer = document.querySelector(".song-container");
+//create songs
+
+const songGrid = document.querySelector(".song-grid");
 
 function createSongs() {
   songs.forEach((songData) => {
@@ -110,15 +119,18 @@ function createSongs() {
     songElement.classList.add("song");
     songElement.setAttribute("draggable", "true");
     songElement.style.backgroundImage = `url(${songData.cover})`;
-    songContainer.appendChild(songElement);
+    songGrid.appendChild(songElement);
   });
 }
 createSongs();
 
+//drag and drop
+
 let draggedItem = null;
 
 const item = document.querySelectorAll(".song");
-const dropZone = document.querySelectorAll(".tier-list-row, .container");
+const dropZone = document.querySelectorAll(".tier-list-row, .song-container");
+const popupSection = document.querySelector(".popup-section");
 
 item.forEach((item) => {
   item.addEventListener("dragstart", (event) => {
@@ -127,19 +139,6 @@ item.forEach((item) => {
   });
 });
 
-function handleDrop(zone) {
-  if (draggedItem) {
-    if (zone.classList.contains("tier-list-row")) {
-      zone.appendChild(draggedItem);
-      draggedItem.style.width = "20%";
-    } else {
-      songContainer.appendChild(draggedItem);
-      draggedItem.style.width = "100%";
-    }
-    draggedItem = null;
-  }
-}
-
 dropZone.forEach((zone) => {
   zone.addEventListener("dragover", (event) => event.preventDefault());
   zone.addEventListener("drop", (event) => {
@@ -147,3 +146,62 @@ dropZone.forEach((zone) => {
     handleDrop(zone);
   });
 });
+
+function handleDrop(zone) {
+  if (draggedItem) {
+    if (zone.classList.contains("tier-list-row")) {
+      tierListDrop(zone);
+      if (zone.classList.contains("f-tier-row")) {
+        fPopup();
+      }
+      if (zone.classList.contains("s-tier-row")) {
+        sPopup();
+      }
+    } else {
+      songGrid.appendChild(draggedItem);
+      draggedItem.style.width = "100%";
+    }
+    draggedItem = null;
+  }
+}
+
+function tierListDrop(zone) {
+  zone.appendChild(draggedItem);
+  draggedItem.style.width = "20%";
+}
+
+//popup
+let popup;
+
+function fPopup() {
+  createPopup();
+  popup.style.width = "14em";
+  popup.src = [sus1, sus2, sus3, sus4][Math.floor(Math.random() * 4)];
+}
+function sPopup() {
+  createPopup();
+  popup.style.width = "20em";
+  popup.src = socialCredit;
+}
+
+function createPopup() {
+  const existingPopup = document.querySelector(".popup");
+  if (existingPopup) {
+    existingPopup.remove();
+  }
+  popup = document.createElement("img");
+  popup.classList.add("popup");
+  popupSection.appendChild(popup);
+  popupFadeOut(popup);
+  return popup;
+}
+
+function popupFadeOut(popup) {
+  popup.style.opacity = 1;
+
+  popup.style.transition = "opacity ease-in-out 2s";
+
+  setTimeout(() => {
+    popup.style.opacity = 0;
+  }, 200);
+}
