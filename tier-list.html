@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>hello world</title>
     <style>
+      html {
+        font-size: 16px;
+      }
       body {
         display: flex;
         justify-content: center;
@@ -18,13 +21,26 @@
           Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
           sans-serif;
       }
+
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+      }
+
       .tier-list-section {
-        max-width: 45em;
+        max-width: 60em;
         display: flex;
         flex-direction: row;
         /* align-items: center; */
         justify-content: center;
         width: 100%;
+      }
+
+      @media (max-width: 768px) {
+        .tier-list-section {
+          flex-direction: column;
+        }
       }
 
       .container {
@@ -110,6 +126,23 @@
         height: 10em;
         aspect-ratio: 1;
       } */
+
+      .color-buttons-grid {
+        display: none;
+      }
+
+      @media (max-width: 768px) {
+        .color-buttons-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 1em;
+        }
+      }
+
+      .color-button {
+        width: 100%;
+        aspect-ratio: 1;
+      }
     </style>
   </head>
 
@@ -138,6 +171,16 @@
           <div class="song"></div>
           <div class="song"></div>
           <div class="song"></div> -->
+        </div>
+
+        <div class="color-buttons-grid">
+          <div class="color-button s-tier"></div>
+          <div class="color-button a-tier"></div>
+          <div class="color-button b-tier"></div>
+          <div class="color-button c-tier"></div>
+          <div class="color-button d-tier"></div>
+          <div class="color-button e-tier"></div>
+          <div class="color-button f-tier"></div>
         </div>
       </div>
     </div>

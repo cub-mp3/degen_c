@@ -19,6 +19,7 @@ import sus3 from "../imgs/sus3.webp";
 import sus4 from "../imgs/sus4.webp";
 
 import socialCredit from "../imgs/social-credit.webp";
+import { create, random } from "lodash-es";
 
 const songs = [
   {
@@ -113,16 +114,72 @@ const songs = [
 
 const songGrid = document.querySelector(".song-grid");
 
+const tierListSection = document.querySelector(".tier-list-section");
+
+//create random song order
+
+songs.sort(() => Math.random() - 0.5);
+
+//create element
+
+function createSongElement(songData) {
+  const songElement = document.createElement("div");
+  songElement.classList.add("song");
+  songElement.setAttribute("draggable", "true");
+  songElement.style.backgroundImage = `url(${songData.cover})`;
+  songGrid.appendChild(songElement);
+  return songElement;
+}
+
+let isPhone = window.innerWidth < 768;
+console.log(isPhone);
+
+let currentSong;
+
 function createSongs() {
-  songs.forEach((songData) => {
-    const songElement = document.createElement("div");
-    songElement.classList.add("song");
-    songElement.setAttribute("draggable", "true");
-    songElement.style.backgroundImage = `url(${songData.cover})`;
-    songGrid.appendChild(songElement);
-  });
+  if (isPhone) {
+    // const randomSong = songs[Math.floor(Math.random() * songs.length)];
+    currentSong = createSongElement(songs[0]);
+    songs.splice(0, 1);
+  } else {
+    songs.forEach((songData) => {
+      createSongElement(songData);
+    });
+  }
 }
 createSongs();
+
+const colorButtons = document.querySelectorAll(".color-button");
+
+const tierListRow = document.querySelectorAll(".tier-list-row");
+
+colorButtons.forEach((button, i) => {
+  button.addEventListener("click", () => {
+    if (i === 0) {
+      sPopup();
+    } else if (i === 6) {
+      fPopup();
+    }
+    console.log("clicked", i);
+    console.log(tierListRow[i]);
+    tierListRow[i].appendChild(currentSong);
+    currentSong.style.width = "20%";
+    createSongs();
+  });
+});
+
+window.addEventListener("resize", handleSongs);
+
+function handleSongs() {
+  let phone = window.innerWidth < 768;
+
+  if (phone !== isPhone) {
+    songGrid.innerHTML = "";
+    isPhone = window.innerWidth < 768;
+
+    createSongs(); //if u resize
+  }
+}
 
 //drag and drop
 
@@ -132,19 +189,25 @@ const item = document.querySelectorAll(".song");
 const dropZone = document.querySelectorAll(".tier-list-row, .song-container");
 const popupSection = document.querySelector(".popup-section");
 
-item.forEach((item) => {
-  item.addEventListener("dragstart", (event) => {
-    draggedItem = item;
+document.addEventListener("dragstart", (event) => {
+  if (event.target.classList.contains("song")) {
+    draggedItem = event.target;
     event.dataTransfer.effectAllowed = "move";
-  });
+  }
 });
 
-dropZone.forEach((zone) => {
-  zone.addEventListener("dragover", (event) => event.preventDefault());
-  zone.addEventListener("drop", (event) => {
+document.addEventListener("dragover", (event) => {
+  if (
+    event.target.classList.contains("tier-list-row") ||
+    event.target.classList.contains("song-container")
+  ) {
     event.preventDefault();
-    handleDrop(zone);
-  });
+  }
+});
+
+document.addEventListener("drop", (event) => {
+  event.preventDefault();
+  handleDrop(event.target);
 });
 
 function handleDrop(zone) {
@@ -189,9 +252,19 @@ function createPopup() {
   }
   popup = document.createElement("img");
   popup.classList.add("popup");
-  popupSection.appendChild(popup);
   popupFadeOut(popup);
-  popup.style.height = "100%";
+
+  if (!isPhone) {
+    popupSection.appendChild(popup);
+    popup.style.height = "100%";
+  } else if (isPhone) {
+    document.body.appendChild(popup);
+    popup.style.width = "100%";
+    popup.height = "100vh";
+    popup.style.position = "fixed";
+    popup.style.top = "0";
+    popup.style.left = "0";
+  }
 
   return popup;
 }
@@ -203,5 +276,9 @@ function popupFadeOut(popup) {
 
   setTimeout(() => {
     popup.style.opacity = 0;
+
+    setTimeout(() => {
+      popup.remove(); // Remove after fade-out completes
+    }, 2000); // 200ms delay + 200ms fade-out time
   }, 200);
 }
