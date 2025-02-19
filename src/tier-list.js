@@ -113,8 +113,8 @@ const songs = [
 //create songs
 
 const songGrid = document.querySelector(".song-grid");
-
-const tierListSection = document.querySelector(".tier-list-section");
+const colorButtons = document.querySelectorAll(".color-button");
+const tierListRow = document.querySelectorAll(".tier-list-row");
 
 //create random song order
 
@@ -132,13 +132,11 @@ function createSongElement(songData) {
 }
 
 let isPhone = window.innerWidth < 768;
-console.log(isPhone);
 
 let currentSong;
 
 function createSongs() {
   if (isPhone) {
-    // const randomSong = songs[Math.floor(Math.random() * songs.length)];
     currentSong = createSongElement(songs[0]);
     songs.splice(0, 1);
   } else {
@@ -148,25 +146,6 @@ function createSongs() {
   }
 }
 createSongs();
-
-const colorButtons = document.querySelectorAll(".color-button");
-
-const tierListRow = document.querySelectorAll(".tier-list-row");
-
-colorButtons.forEach((button, i) => {
-  button.addEventListener("click", () => {
-    if (i === 0) {
-      sPopup();
-    } else if (i === 6) {
-      fPopup();
-    }
-    console.log("clicked", i);
-    console.log(tierListRow[i]);
-    tierListRow[i].appendChild(currentSong);
-    currentSong.style.width = "20%";
-    createSongs();
-  });
-});
 
 window.addEventListener("resize", handleSongs);
 
@@ -233,6 +212,23 @@ function tierListDrop(zone) {
   draggedItem.style.width = "20%";
 }
 
+// buttons for phone
+
+colorButtons.forEach((button, i) => {
+  button.addEventListener("click", () => {
+    if (i === 0) {
+      sPopup();
+    } else if (i === 6) {
+      fPopup();
+    }
+    console.log("clicked", i);
+    console.log(tierListRow[i]);
+    tierListRow[i].appendChild(currentSong);
+    currentSong.style.width = "20%";
+    createSongs();
+  });
+});
+
 //popup
 let popup;
 
@@ -255,18 +251,25 @@ function createPopup() {
   popupFadeOut(popup);
 
   if (!isPhone) {
-    popupSection.appendChild(popup);
-    popup.style.height = "100%";
+    desktopPopup();
   } else if (isPhone) {
-    document.body.appendChild(popup);
-    popup.style.width = "100%";
-    popup.height = "100vh";
-    popup.style.position = "fixed";
-    popup.style.top = "0";
-    popup.style.left = "0";
+    phonePopup();
   }
 
   return popup;
+}
+function desktopPopup() {
+  popupSection.appendChild(popup);
+  popup.style.height = "100%";
+}
+
+function phonePopup() {
+  document.body.appendChild(popup);
+  popup.style.width = "100%";
+  popup.style.height = "100%";
+  popup.style.position = "fixed";
+  popup.style.top = "0";
+  popup.style.left = "0";
 }
 
 function popupFadeOut(popup) {
